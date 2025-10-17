@@ -999,16 +999,38 @@ img {
     font-size: 2rem;
   }
   
+  /* Product grid - 2 columns on mobile */
+  #productsGrid > div,
+  #featuredProducts > div {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  
   .product-name {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   
   .product-info {
-    padding: 1rem;
+    padding: 0.875rem;
   }
   
   .current-price {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
+  }
+  
+  .product-category {
+    font-size: 0.75rem;
+  }
+  
+  .product-rating {
+    font-size: 0.8rem;
+  }
+  
+  .add-to-cart-btn {
+    padding: 0.625rem;
+    font-size: 0.875rem;
   }
   
   .cart-item {
