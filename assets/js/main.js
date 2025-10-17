@@ -624,6 +624,26 @@ function performHeroSearch() {
   }
 }
 
+// Shop Page Hero Search
+function handleShopHeroSearch(event) {
+  if (event.key === 'Enter') {
+    performShopHeroSearch();
+  }
+}
+
+function performShopHeroSearch() {
+  const searchInput = document.getElementById('shopHeroSearch');
+  const searchTerm = searchInput?.value.trim();
+  
+  if (searchTerm) {
+    // Update URL with search parameter and reload
+    window.location.href = 'shop.html?search=' + encodeURIComponent(searchTerm);
+  } else {
+    // Clear search if empty
+    window.location.href = 'shop.html';
+  }
+}
+
 // Show Notification
 function showNotification(message, type = 'success') {
   const notification = document.createElement('div');
