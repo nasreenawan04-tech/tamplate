@@ -276,28 +276,28 @@ img {
 /* Hero Search Bar */
 .hero-search-bar {
   display: flex;
-  gap: 0.75rem;
+  gap: 1rem;
   margin: 2rem 0;
-  max-width: 600px;
+  max-width: 650px;
   animation: fadeInUp 0.8s ease 0.3s both;
 }
 
 .hero-search-bar input {
   flex: 1;
-  padding: 1rem 1.5rem;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 1.125rem 1.75rem;
+  border: none;
   border-radius: 3rem;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.98);
   color: var(--light-text);
   font-size: 1rem;
   transition: var(--transition);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .hero-search-bar input:focus {
   outline: none;
-  border-color: white;
   background: white;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .hero-search-bar input::placeholder {
@@ -305,7 +305,7 @@ img {
 }
 
 .hero-search-bar button {
-  padding: 1rem 2rem;
+  padding: 1.125rem 2.25rem;
   background: white;
   color: var(--primary-color);
   border: none;
@@ -317,11 +317,12 @@ img {
   align-items: center;
   gap: 0.5rem;
   white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .hero-search-bar button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
 .hero-search-bar button i {
@@ -387,18 +388,19 @@ img {
   .hero-search-bar {
     flex-direction: column;
     margin: 1.5rem 0;
+    gap: 0.75rem;
   }
   
   .hero-search-bar input {
     width: 100%;
-    padding: 0.875rem 1.25rem;
+    padding: 1rem 1.5rem;
     font-size: 16px; /* Prevents zoom on iOS */
   }
   
   .hero-search-bar button {
     width: 100%;
     justify-content: center;
-    padding: 0.875rem 1.5rem;
+    padding: 1rem 1.75rem;
   }
   
   .hero-buttons {
