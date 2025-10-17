@@ -71,7 +71,7 @@ function initNavbar() {
 // Load Products
 async function loadProducts() {
   try {
-    const response = await fetch('../assets/data/products.json');
+    const response = await fetch('/assets/data/products.json');
     products = await response.json();
     
     if (document.getElementById('productsGrid')) {
@@ -401,7 +401,7 @@ async function loadProductDetail() {
   }
 
   try {
-    const response = await fetch('../assets/data/products.json');
+    const response = await fetch('/assets/data/products.json');
     products = await response.json();
     const product = products.find(p => p.id === productId);
 
