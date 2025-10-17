@@ -1,29 +1,19 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ShopVerse - Your one-stop eCommerce destination for fashion, electronics, furniture, and beauty products. Premium quality at affordable prices.">
-  <meta name="keywords" content="ecommerce, online shopping, fashion, electronics, furniture, beauty products">
-  <meta name="author" content="ShopVerse">
-  <title>ShopVerse - Premium eCommerce Template</title>
+  <meta name="description" content="Your wishlist - Save your favorite products for later">
+  <title>Wishlist - ShopVerse</title>
   
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
-  
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="light-mode">
+<body class="light-mode" onload="displayWishlistItems()">
 
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg">
@@ -61,9 +51,6 @@
           <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
             <i class="fas fa-moon" id="themeIcon"></i>
           </button>
-          <a href="wishlist.html" class="icon-btn" title="Wishlist">
-            <i class="fas fa-heart"></i>
-          </a>
           <a href="login.html" class="icon-btn" title="Account">
             <i class="fas fa-user"></i>
           </a>
@@ -76,110 +63,19 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero-section">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6 hero-content">
-          <h1>Welcome to ShopVerse</h1>
-          <p>Discover amazing products at unbeatable prices. Your one-stop destination for fashion, electronics, furniture, and beauty products.</p>
-          
-          <!-- Hero Search Bar -->
-          <div class="hero-search-bar">
-            <input type="text" id="heroSearch" placeholder="Search for products, categories..." onkeyup="handleHeroSearch(event)">
-            <button onclick="performHeroSearch()">
-              <i class="fas fa-search"></i>
-              <span>Search</span>
-            </button>
-          </div>
-          
-          <div class="hero-buttons">
-            <a href="shop.html" class="btn-primary">Shop Now</a>
-            <a href="about.html" class="btn-outline">Learn More</a>
-          </div>
-        </div>
-        <div class="col-lg-6 d-none d-lg-block">
-          <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&h=600&fit=crop" alt="Shopping" style="border-radius: 1rem; box-shadow: var(--shadow-xl);">
-        </div>
-      </div>
+  <!-- Wishlist Section -->
+  <div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1><i class="fas fa-heart" style="color: var(--accent-color);"></i> My Wishlist</h1>
+      <button onclick="clearWishlist()" class="btn-outline" id="clearWishlistBtn" style="display: none;">
+        <i class="fas fa-trash"></i> Clear Wishlist
+      </button>
     </div>
-  </section>
 
-  <!-- Categories Section -->
-  <section class="categories-section">
-    <div class="container">
-      <h2 class="section-title">Shop by Category</h2>
-      <div class="row g-4">
-        <div class="col-6 col-md-3">
-          <div class="category-card" onclick="window.location.href='shop.html'">
-            <div class="category-icon">
-              <i class="fas fa-tshirt"></i>
-            </div>
-            <h3>Fashion</h3>
-            <p>Trendy styles</p>
-          </div>
-        </div>
-        <div class="col-6 col-md-3">
-          <div class="category-card" onclick="window.location.href='shop.html'">
-            <div class="category-icon">
-              <i class="fas fa-laptop"></i>
-            </div>
-            <h3>Electronics</h3>
-            <p>Latest tech</p>
-          </div>
-        </div>
-        <div class="col-6 col-md-3">
-          <div class="category-card" onclick="window.location.href='shop.html'">
-            <div class="category-icon">
-              <i class="fas fa-couch"></i>
-            </div>
-            <h3>Furniture</h3>
-            <p>Modern designs</p>
-          </div>
-        </div>
-        <div class="col-6 col-md-3">
-          <div class="category-card" onclick="window.location.href='shop.html'">
-            <div class="category-icon">
-              <i class="fas fa-heart"></i>
-            </div>
-            <h3>Beauty</h3>
-            <p>Premium care</p>
-          </div>
-        </div>
-      </div>
+    <div id="wishlistItems">
+      <!-- Wishlist items will be loaded here -->
     </div>
-  </section>
-
-  <!-- Featured Products -->
-  <section class="py-5">
-    <div class="container">
-      <h2 class="section-title">Featured Products</h2>
-      <div class="row" id="featuredProducts">
-        <!-- Products will be loaded here by JavaScript -->
-      </div>
-      <div class="text-center mt-4">
-        <a href="shop.html" class="btn-secondary">View All Products</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Newsletter Section -->
-  <section class="py-5" style="background: var(--card-color); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6 mb-4 mb-lg-0">
-          <h2>Subscribe to Our Newsletter</h2>
-          <p>Get the latest updates on new products and upcoming sales</p>
-        </div>
-        <div class="col-lg-6">
-          <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
-            <input type="email" id="newsletterEmail" placeholder="Enter your email" required>
-            <button type="submit">Subscribe</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
+  </div>
 
   <!-- Footer -->
   <footer class="footer">
@@ -232,10 +128,7 @@
     </div>
   </footer>
 
-  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <!-- Custom JS -->
   <script src="assets/js/main.js"></script>
 </body>
 </html>

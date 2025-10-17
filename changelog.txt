@@ -1,0 +1,57 @@
+CHANGELOG - ShopVerse eCommerce Template
+
+Version 1.0.0 (October 17, 2025)
+---------------------------------
+Initial Release
+
+Features:
+✓ Fully responsive design for all devices
+✓ Modern and clean UI with dark/light theme toggle
+✓ Homepage with hero section and featured products
+✓ Complete shop page with product filtering
+✓ Product details page with image gallery
+✓ Shopping cart functionality with local storage
+✓ Checkout page with form validation
+✓ User authentication (Login/Register)
+✓ About page
+✓ Contact page with form
+✓ Wishlist functionality
+✓ Bootstrap 5.3.0 integration
+✓ Font Awesome 6.4.0 icons
+✓ Smooth animations with Animate.css
+✓ Cross-browser compatibility
+✓ SEO optimized structure
+✓ Well-documented code
+
+Included Files:
+- 9 HTML pages (index, about, shop, product-details, cart, checkout, login, register, contact)
+- Organized assets folder structure
+- Bootstrap, jQuery, and custom JavaScript
+- Custom CSS with responsive design
+- Complete documentation
+
+Technical Details:
+- Built with HTML5, CSS3, JavaScript
+- Bootstrap 5.3.0 framework
+- Font Awesome 6.4.0 for icons
+- Google Fonts (Inter)
+- LocalStorage for cart management
+- Responsive breakpoints for all screen sizes
+
+Browser Support:
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Mobile browsers
+
+---
+
+Future Updates (Planned):
+- User dashboard
+- Order tracking
+- Payment gateway integration
+- Product reviews and ratings
+- Advanced search filters
+- Newsletter subscription
+- Multi-language support

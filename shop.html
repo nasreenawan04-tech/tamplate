@@ -3,21 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Review your shopping cart and proceed to checkout. Secure payment and fast delivery.">
-  <title>Shopping Cart - ShopVerse</title>
+  <meta name="description" content="Browse our extensive collection of premium products. Fashion, electronics, furniture, and beauty items at great prices.">
+  <meta name="keywords" content="shop, products, online shopping, ecommerce">
+  <title>Shop - ShopVerse</title>
   
   <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="light-mode" onload="displayCartItems()">
+<body class="light-mode">
 
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand" href="../index.html">
+      <a class="navbar-brand" href="index.html">
         <i class="fas fa-shopping-bag"></i> ShopVerse
       </a>
       
@@ -28,7 +29,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="../index.html">Home</a>
+            <a class="nav-link" href="index.html">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="shop.html">Shop</a>
@@ -50,7 +51,7 @@
           <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
             <i class="fas fa-moon" id="themeIcon"></i>
           </button>
-          <a href="auth.html" class="icon-btn" title="Account">
+          <a href="login.html" class="icon-btn" title="Account">
             <i class="fas fa-user"></i>
           </a>
           <a href="cart.html" class="icon-btn" title="Shopping Cart">
@@ -65,25 +66,70 @@
   <!-- Page Header -->
   <div class="page-header">
     <div class="container">
-      <h1>Shopping Cart</h1>
-      <p>Review your items and proceed to checkout</p>
+      <h1>Our Products</h1>
+      <p>Discover amazing deals on premium quality products</p>
+      <p class="mt-2" style="font-size: 1rem; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto;">Browse through our curated collection of fashion, electronics, furniture, and beauty products. Quality guaranteed with fast shipping!</p>
+      
+      <!-- Shop Page Search Bar -->
+      <div class="hero-search-bar" style="margin-left: auto; margin-right: auto;">
+        <input type="text" id="shopSearch" placeholder="Search for products, categories..." onkeyup="handleShopSearch(event)">
+        <button onclick="performShopSearch()">
+          <i class="fas fa-search"></i>
+          <span>Search</span>
+        </button>
+      </div>
+      
+      <div class="hero-stats" style="display: flex; justify-content: center; gap: 3rem; margin-top: 2rem; flex-wrap: wrap;">
+        <div style="text-align: center;">
+          <div style="font-size: 2rem; font-weight: 700;">1000+</div>
+          <div style="font-size: 0.875rem; opacity: 0.9;">Products</div>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 2rem; font-weight: 700;">50K+</div>
+          <div style="font-size: 0.875rem; opacity: 0.9;">Happy Customers</div>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 2rem; font-weight: 700;">24/7</div>
+          <div style="font-size: 0.875rem; opacity: 0.9;">Support</div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Cart Content -->
-  <div class="container py-5">
-    <div class="row">
-      <div class="col-lg-8 mb-4">
-        <div id="cartItems">
-          <!-- Cart items will be loaded here by JavaScript -->
+  <!-- Filter Section -->
+  <div class="container">
+    <!-- Search Results Message -->
+    <div id="searchResultsMessage" style="margin-bottom: 1rem; font-size: 1.125rem; font-weight: 500; color: var(--text-color);"></div>
+    
+    <div class="filter-section">
+      <div class="filter-row">
+        <div class="filter-group">
+          <label for="categoryFilter">Category</label>
+          <select id="categoryFilter" onchange="filterProducts()">
+            <option value="all">All Categories</option>
+            <option value="fashion">Fashion</option>
+            <option value="electronics">Electronics</option>
+            <option value="furniture">Furniture</option>
+            <option value="beauty">Beauty</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="sortFilter">Sort By</label>
+          <select id="sortFilter" onchange="filterProducts()">
+            <option value="default">Default</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Highest Rated</option>
+            <option value="name">Name: A to Z</option>
+          </select>
         </div>
       </div>
+    </div>
 
-      <div class="col-lg-4">
-        <div class="cart-summary" id="cartSummary">
-          <!-- Cart summary will be loaded here by JavaScript -->
-        </div>
-      </div>
+    <!-- Products Grid -->
+    <div class="row" id="productsGrid">
+      <!-- Products will be loaded here by JavaScript -->
     </div>
   </div>
 
@@ -105,7 +151,7 @@
         <div class="footer-section">
           <h4>Quick Links</h4>
           <ul class="footer-links">
-            <li><a href="../index.html">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="shop.html">Shop</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="contact.html">Contact</a></li>
@@ -139,6 +185,6 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/js/main.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

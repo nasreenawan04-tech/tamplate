@@ -1,24 +1,23 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Your wishlist - Save your favorite products for later">
-  <title>Wishlist - ShopVerse</title>
+  <meta name="description" content="Review your shopping cart and proceed to checkout. Secure payment and fast delivery.">
+  <title>Shopping Cart - ShopVerse</title>
   
   <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="light-mode" onload="displayWishlistItems()">
+<body class="light-mode" onload="displayCartItems()">
 
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand" href="../index.html">
+      <a class="navbar-brand" href="index.html">
         <i class="fas fa-shopping-bag"></i> ShopVerse
       </a>
       
@@ -29,7 +28,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="../index.html">Home</a>
+            <a class="nav-link" href="index.html">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="shop.html">Shop</a>
@@ -51,7 +50,7 @@
           <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
             <i class="fas fa-moon" id="themeIcon"></i>
           </button>
-          <a href="auth.html" class="icon-btn" title="Account">
+          <a href="login.html" class="icon-btn" title="Account">
             <i class="fas fa-user"></i>
           </a>
           <a href="cart.html" class="icon-btn" title="Shopping Cart">
@@ -63,17 +62,28 @@
     </div>
   </nav>
 
-  <!-- Wishlist Section -->
-  <div class="container py-5">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <h1><i class="fas fa-heart" style="color: var(--accent-color);"></i> My Wishlist</h1>
-      <button onclick="clearWishlist()" class="btn-outline" id="clearWishlistBtn" style="display: none;">
-        <i class="fas fa-trash"></i> Clear Wishlist
-      </button>
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container">
+      <h1>Shopping Cart</h1>
+      <p>Review your items and proceed to checkout</p>
     </div>
+  </div>
 
-    <div id="wishlistItems">
-      <!-- Wishlist items will be loaded here -->
+  <!-- Cart Content -->
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-lg-8 mb-4">
+        <div id="cartItems">
+          <!-- Cart items will be loaded here by JavaScript -->
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="cart-summary" id="cartSummary">
+          <!-- Cart summary will be loaded here by JavaScript -->
+        </div>
+      </div>
     </div>
   </div>
 
@@ -95,7 +105,7 @@
         <div class="footer-section">
           <h4>Quick Links</h4>
           <ul class="footer-links">
-            <li><a href="../index.html">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="shop.html">Shop</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="contact.html">Contact</a></li>
@@ -129,6 +139,6 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/js/main.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

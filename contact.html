@@ -3,22 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Browse our extensive collection of premium products. Fashion, electronics, furniture, and beauty items at great prices.">
-  <meta name="keywords" content="shop, products, online shopping, ecommerce">
-  <title>Shop - ShopVerse</title>
+  <meta name="description" content="Get in touch with ShopVerse. We're here to help with any questions or concerns.">
+  <title>Contact Us - ShopVerse</title>
   
   <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="light-mode">
 
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand" href="../index.html">
+      <a class="navbar-brand" href="index.html">
         <i class="fas fa-shopping-bag"></i> ShopVerse
       </a>
       
@@ -29,7 +28,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="../index.html">Home</a>
+            <a class="nav-link" href="index.html">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="shop.html">Shop</a>
@@ -51,7 +50,7 @@
           <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
             <i class="fas fa-moon" id="themeIcon"></i>
           </button>
-          <a href="auth.html" class="icon-btn" title="Account">
+          <a href="login.html" class="icon-btn" title="Account">
             <i class="fas fa-user"></i>
           </a>
           <a href="cart.html" class="icon-btn" title="Shopping Cart">
@@ -66,70 +65,109 @@
   <!-- Page Header -->
   <div class="page-header">
     <div class="container">
-      <h1>Our Products</h1>
-      <p>Discover amazing deals on premium quality products</p>
-      <p class="mt-2" style="font-size: 1rem; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto;">Browse through our curated collection of fashion, electronics, furniture, and beauty products. Quality guaranteed with fast shipping!</p>
-      
-      <!-- Shop Page Search Bar -->
-      <div class="hero-search-bar" style="margin-left: auto; margin-right: auto;">
-        <input type="text" id="shopSearch" placeholder="Search for products, categories..." onkeyup="handleShopSearch(event)">
-        <button onclick="performShopSearch()">
-          <i class="fas fa-search"></i>
-          <span>Search</span>
-        </button>
-      </div>
-      
-      <div class="hero-stats" style="display: flex; justify-content: center; gap: 3rem; margin-top: 2rem; flex-wrap: wrap;">
-        <div style="text-align: center;">
-          <div style="font-size: 2rem; font-weight: 700;">1000+</div>
-          <div style="font-size: 0.875rem; opacity: 0.9;">Products</div>
-        </div>
-        <div style="text-align: center;">
-          <div style="font-size: 2rem; font-weight: 700;">50K+</div>
-          <div style="font-size: 0.875rem; opacity: 0.9;">Happy Customers</div>
-        </div>
-        <div style="text-align: center;">
-          <div style="font-size: 2rem; font-weight: 700;">24/7</div>
-          <div style="font-size: 0.875rem; opacity: 0.9;">Support</div>
-        </div>
-      </div>
+      <h1>Contact Us</h1>
+      <p>We'd love to hear from you. Get in touch!</p>
     </div>
   </div>
 
-  <!-- Filter Section -->
-  <div class="container">
-    <!-- Search Results Message -->
-    <div id="searchResultsMessage" style="margin-bottom: 1rem; font-size: 1.125rem; font-weight: 500; color: var(--text-color);"></div>
-    
-    <div class="filter-section">
-      <div class="filter-row">
-        <div class="filter-group">
-          <label for="categoryFilter">Category</label>
-          <select id="categoryFilter" onchange="filterProducts()">
-            <option value="all">All Categories</option>
-            <option value="fashion">Fashion</option>
-            <option value="electronics">Electronics</option>
-            <option value="furniture">Furniture</option>
-            <option value="beauty">Beauty</option>
-          </select>
+  <!-- Contact Section -->
+  <div class="container py-5">
+    <div class="row">
+      <!-- Contact Information -->
+      <div class="col-lg-4 mb-4">
+        <div class="contact-info">
+          <h3 class="mb-4">Get In Touch</h3>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div>
+              <h5>Address</h5>
+              <p>123 Shopping Street<br>New York, NY 10001</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div>
+              <h5>Phone</h5>
+              <p>+1 (555) 123-4567<br>Mon-Fri: 9AM - 6PM</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div>
+              <h5>Email</h5>
+              <p>info@shopverse.com<br>support@shopverse.com</p>
+            </div>
+          </div>
+
+          <div class="social-links mt-4">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          </div>
         </div>
-        
-        <div class="filter-group">
-          <label for="sortFilter">Sort By</label>
-          <select id="sortFilter" onchange="filterProducts()">
-            <option value="default">Default</option>
-            <option value="price-low">Price: Low to High</option>
-            <option value="price-high">Price: High to Low</option>
-            <option value="rating">Highest Rated</option>
-            <option value="name">Name: A to Z</option>
-          </select>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="col-lg-8">
+        <div class="product-details-content">
+          <h3 class="mb-4">Send Us a Message</h3>
+          
+          <form onsubmit="handleContactForm(event)">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Your Name *</label>
+                  <input type="text" class="form-control" placeholder="John Doe" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Your Email *</label>
+                  <input type="email" class="form-control" placeholder="john@example.com" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Subject *</label>
+              <input type="text" class="form-control" placeholder="How can we help?" required>
+            </div>
+
+            <div class="form-group">
+              <label>Message *</label>
+              <textarea class="form-control" placeholder="Your message..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-secondary btn-lg w-100">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+          </form>
         </div>
       </div>
     </div>
 
-    <!-- Products Grid -->
-    <div class="row" id="productsGrid">
-      <!-- Products will be loaded here by JavaScript -->
+    <!-- Map Section -->
+    <div class="row mt-5">
+      <div class="col-12">
+        <h3 class="mb-4 text-center">Find Us</h3>
+        <div class="map-container">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.11976373946229!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1635959968024!5m2!1sen!2s"
+            allowfullscreen="" 
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -151,7 +189,7 @@
         <div class="footer-section">
           <h4>Quick Links</h4>
           <ul class="footer-links">
-            <li><a href="../index.html">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="shop.html">Shop</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="contact.html">Contact</a></li>
@@ -185,6 +223,6 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/js/main.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

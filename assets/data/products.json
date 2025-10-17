@@ -121,11 +121,11 @@
     "originalPrice": 119.99,
     "rating": 4.8,
     "reviews": 423,
-    "image": "/assets/images/luxury-face-cream.png",
+    "image": "/assets/images/products/luxury-face-cream.png",
     "images": [
-      "/assets/images/luxury-face-cream.png",
-      "/assets/images/luxury-face-cream.png",
-      "/assets/images/luxury-face-cream.png"
+      "/assets/images/products/luxury-face-cream.png",
+      "/assets/images/products/luxury-face-cream.png",
+      "/assets/images/products/luxury-face-cream.png"
     ],
     "description": "Anti-aging face cream with natural ingredients. Hydrates, firms, and revitalizes your skin for a youthful glow.",
     "features": ["Anti-Aging Formula", "Natural Ingredients", "Deep Hydration", "Dermatologist Tested"],
