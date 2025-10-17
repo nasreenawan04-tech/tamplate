@@ -123,6 +123,45 @@ function initNavbar() {
       link.classList.add('active');
     }
   });
+
+  // Initialize header search functionality
+  initHeaderSearch();
+}
+
+// Header Search Functionality
+function initHeaderSearch() {
+  const headerSearchInput = document.querySelector('.search-bar input');
+  const headerSearchIcon = document.querySelector('.search-bar .search-icon');
+  
+  if (headerSearchInput) {
+    // Handle Enter key press
+    headerSearchInput.addEventListener('keyup', (e) => {
+      if (e.key === 'Enter') {
+        performHeaderSearch();
+      }
+    });
+  }
+  
+  if (headerSearchIcon) {
+    // Handle search icon click
+    headerSearchIcon.addEventListener('click', () => {
+      performHeaderSearch();
+    });
+    // Make icon cursor pointer
+    headerSearchIcon.style.cursor = 'pointer';
+  }
+}
+
+function performHeaderSearch() {
+  const searchInput = document.querySelector('.search-bar input');
+  if (!searchInput) return;
+  
+  const searchTerm = searchInput.value.trim();
+  if (searchTerm) {
+    window.location.href = `shop.html?search=${encodeURIComponent(searchTerm)}`;
+  } else {
+    window.location.href = 'shop.html';
+  }
 }
 
 // Load Products
