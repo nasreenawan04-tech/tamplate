@@ -268,9 +268,149 @@ function addToCart(productId) {
   showNotification('Product added to cart!', 'success');
 }
 
+// Wishlist Management
+let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
 // Add to Wishlist
 function addToWishlist(productId) {
+  const product = products.find(p => p.id === productId);
+  if (!product) return;
+
+  const existingItem = wishlist.find(item => item.id === productId);
+  
+  if (existingItem) {
+    showNotification('Product already in wishlist!', 'info');
+    return;
+  }
+
+  wishlist.push(product);
+  localStorage.setItem('wishlist', JSON.stringify(wishlist));
+  
+  // Update heart icon if on product detail page
+  const heartIcon = document.querySelector('.product-action-buttons .fa-heart');
+  if (heartIcon) {
+    heartIcon.classList.remove('far');
+    heartIcon.classList.add('fas');
+  }
+  
   showNotification('Product added to wishlist!', 'success');
+}
+
+// Remove from Wishlist
+function removeFromWishlist(productId) {
+  wishlist = wishlist.filter(item => item.id !== productId);
+  localStorage.setItem('wishlist', JSON.stringify(wishlist));
+  
+  // Update heart icon if on product detail page
+  const heartIcon = document.querySelector('.product-action-buttons .fa-heart');
+  if (heartIcon) {
+    heartIcon.classList.remove('fas');
+    heartIcon.classList.add('far');
+  }
+  
+  showNotification('Product removed from wishlist!', 'info');
+}
+
+// Toggle Wishlist
+function toggleWishlist(productId) {
+  const isInWishlist = wishlist.some(item => item.id === productId);
+  
+  if (isInWishlist) {
+    removeFromWishlist(productId);
+  } else {
+    addToWishlist(productId);
+  }
+}
+
+// Share Product
+function shareProduct(productId) {
+  const product = products.find(p => p.id === productId);
+  if (!product) return;
+
+  const url = window.location.href;
+  const title = product.name;
+  const text = `Check out ${product.name} on ShopVerse!`;
+
+  // Check if Web Share API is available
+  if (navigator.share) {
+    navigator.share({
+      title: title,
+      text: text,
+      url: url
+    })
+    .then(() => showNotification('Product shared successfully!', 'success'))
+    .catch((error) => {
+      if (error.name !== 'AbortError') {
+        fallbackShare(url, title);
+      }
+    });
+  } else {
+    fallbackShare(url, title);
+  }
+}
+
+// Fallback share method
+function fallbackShare(url, title) {
+  // Create share modal
+  const modal = document.createElement('div');
+  modal.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    animation: fadeIn 0.3s ease;
+  `;
+  
+  modal.innerHTML = `
+    <div style="background: var(--card-color); border-radius: 1rem; padding: 2rem; max-width: 500px; width: 90%; box-shadow: var(--shadow-xl);">
+      <h3 style="margin-bottom: 1.5rem; color: var(--text-color);">Share this product</h3>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+        <button onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}', '_blank')" style="flex: 1; min-width: 120px; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.5rem; background: #1877f2; color: white; cursor: pointer;">
+          <i class="fab fa-facebook-f"></i> Facebook
+        </button>
+        <button onclick="window.open('https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}', '_blank')" style="flex: 1; min-width: 120px; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.5rem; background: #1da1f2; color: white; cursor: pointer;">
+          <i class="fab fa-twitter"></i> Twitter
+        </button>
+        <button onclick="window.open('https://wa.me/?text=${encodeURIComponent(title + ' ' + url)}', '_blank')" style="flex: 1; min-width: 120px; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.5rem; background: #25d366; color: white; cursor: pointer;">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </button>
+      </div>
+      <div style="margin-bottom: 1.5rem;">
+        <input type="text" value="${url}" readonly style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.5rem; background: var(--bg-color); color: var(--text-color);" id="shareUrl">
+      </div>
+      <div style="display: flex; gap: 1rem;">
+        <button onclick="copyShareUrl()" style="flex: 1; padding: 0.75rem; border: 1px solid var(--primary-color); border-radius: 0.5rem; background: var(--primary-color); color: white; cursor: pointer;">
+          <i class="fas fa-copy"></i> Copy Link
+        </button>
+        <button onclick="this.closest('div[style*=fixed]').remove()" style="flex: 1; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.5rem; background: var(--card-color); color: var(--text-color); cursor: pointer;">
+          Close
+        </button>
+      </div>
+    </div>
+  `;
+  
+  document.body.appendChild(modal);
+  
+  // Close on background click
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.remove();
+    }
+  });
+}
+
+// Copy share URL
+function copyShareUrl() {
+  const input = document.getElementById('shareUrl');
+  input.select();
+  document.execCommand('copy');
+  showNotification('Link copied to clipboard!', 'success');
 }
 
 // Update Cart Badge
@@ -507,6 +647,24 @@ function displayProductDetail(product) {
   // Add to cart button
   const addToCartBtn = document.getElementById('addToCartBtn');
   addToCartBtn.onclick = () => addToCart(product.id);
+
+  // Check if product is in wishlist and update heart icon
+  const isInWishlist = wishlist.some(item => item.id === product.id);
+  const wishlistBtn = document.querySelector('.product-action-buttons .btn-outline:first-child');
+  if (wishlistBtn) {
+    const heartIcon = wishlistBtn.querySelector('i');
+    if (heartIcon && isInWishlist) {
+      heartIcon.classList.remove('far');
+      heartIcon.classList.add('fas');
+    }
+    wishlistBtn.onclick = () => toggleWishlist(product.id);
+  }
+
+  // Wire share button
+  const shareBtn = document.querySelector('.product-action-buttons .btn-outline:last-child');
+  if (shareBtn) {
+    shareBtn.onclick = () => shareProduct(product.id);
+  }
 }
 
 // Change Main Image
@@ -664,6 +822,15 @@ style.textContent = `
     to {
       transform: translateX(100%);
       opacity: 0;
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
     }
   }
 `;
