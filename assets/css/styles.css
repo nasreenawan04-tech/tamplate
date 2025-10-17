@@ -950,6 +950,12 @@ body.dark-mode .product-details-content {
   border-radius: 1rem;
   padding: 1.5rem;
   margin-bottom: 1rem;
+  transition: var(--transition);
+}
+
+.review-card:hover {
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-md);
 }
 
 .review-header {
@@ -961,11 +967,53 @@ body.dark-mode .product-details-content {
 
 .reviewer-name {
   font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .review-date {
   opacity: 0.6;
   font-size: 0.875rem;
+}
+
+/* ===== Comments Section ===== */
+.comments-section {
+  margin-top: 3rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.comment-reply {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.comment-reply .btn-outline {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition);
+}
+
+.comment-reply .btn-outline:hover {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+body.dark-mode .comment-reply .btn-outline {
+  border-color: var(--border-dark);
+}
+
+@media (max-width: 576px) {
+  .comments-section .review-card {
+    margin-left: 0 !important;
+  }
 }
 
 /* ===== Auth Pages ===== */

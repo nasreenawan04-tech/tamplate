@@ -596,6 +596,52 @@ function handleContactForm(event) {
   event.target.reset();
 }
 
+// Comment Submission
+function handleCommentSubmit(event) {
+  event.preventDefault();
+  
+  const name = document.getElementById('commentName').value;
+  const email = document.getElementById('commentEmail').value;
+  const comment = document.getElementById('commentText').value;
+  
+  if (name && email && comment) {
+    // Create new comment element
+    const commentHTML = `
+      <div class="review-card" style="animation: fadeInUp 0.5s ease;">
+        <div class="review-header">
+          <div>
+            <div class="reviewer-name">${name}</div>
+          </div>
+          <div class="review-date">Just now</div>
+        </div>
+        <p>${comment}</p>
+        <div class="comment-reply mt-2">
+          <button class="btn-outline" style="padding: 0.5rem 1rem; font-size: 0.875rem;">
+            <i class="fas fa-reply"></i> Reply
+          </button>
+        </div>
+      </div>
+    `;
+    
+    // Add to comments list
+    const commentsList = document.getElementById('commentsList');
+    if (commentsList) {
+      commentsList.insertAdjacentHTML('afterbegin', commentHTML);
+    }
+    
+    // Reset form
+    event.target.reset();
+    
+    // Show success notification
+    showNotification('Comment posted successfully!', 'success');
+    
+    // Scroll to new comment
+    setTimeout(() => {
+      commentsList.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
+}
+
 // Animation styles
 const style = document.createElement('style');
 style.textContent = `

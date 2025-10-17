@@ -175,6 +175,98 @@
         <p>Very satisfied with this purchase. Quality is top-notch and customer service was helpful when I had questions.</p>
       </div>
     </div>
+
+    <!-- Comments Section -->
+    <div class="comments-section mt-5">
+      <h2 class="mb-4">Comments & Questions</h2>
+      
+      <!-- Comment Form -->
+      <div class="product-details-content mb-4">
+        <h4 class="mb-3">Leave a Comment</h4>
+        <form onsubmit="handleCommentSubmit(event)">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Your Name *</label>
+                <input type="text" class="form-control" id="commentName" placeholder="John Doe" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Email *</label>
+                <input type="email" class="form-control" id="commentEmail" placeholder="john@example.com" required>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Your Comment *</label>
+            <textarea class="form-control" id="commentText" rows="4" placeholder="Share your thoughts or ask a question..." required></textarea>
+          </div>
+          <button type="submit" class="btn-secondary">
+            <i class="fas fa-paper-plane"></i> Post Comment
+          </button>
+        </form>
+      </div>
+
+      <!-- Comments List -->
+      <div id="commentsList">
+        <div class="review-card">
+          <div class="review-header">
+            <div>
+              <div class="reviewer-name">Sarah Williams</div>
+            </div>
+            <div class="review-date">3 hours ago</div>
+          </div>
+          <p>Does this product come with a warranty? Also, what's the return policy?</p>
+          <div class="comment-reply mt-2">
+            <button class="btn-outline" style="padding: 0.5rem 1rem; font-size: 0.875rem;">
+              <i class="fas fa-reply"></i> Reply
+            </button>
+          </div>
+        </div>
+
+        <div class="review-card" style="margin-left: 2rem;">
+          <div class="review-header">
+            <div>
+              <div class="reviewer-name">ShopVerse Support</div>
+              <span class="badge bg-primary" style="font-size: 0.75rem; margin-left: 0.5rem;">Admin</span>
+            </div>
+            <div class="review-date">2 hours ago</div>
+          </div>
+          <p>Yes, all our products come with a 1-year manufacturer warranty. We offer 30-day returns for unused items. Feel free to contact us if you have any other questions!</p>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div>
+              <div class="reviewer-name">Alex Chen</div>
+            </div>
+            <div class="review-date">1 day ago</div>
+          </div>
+          <p>Just received mine yesterday! The quality is amazing. Shipping was faster than expected too.</p>
+          <div class="comment-reply mt-2">
+            <button class="btn-outline" style="padding: 0.5rem 1rem; font-size: 0.875rem;">
+              <i class="fas fa-reply"></i> Reply
+            </button>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div>
+              <div class="reviewer-name">Emily Rodriguez</div>
+            </div>
+            <div class="review-date">3 days ago</div>
+          </div>
+          <p>Is this available in other colors? I love the design but would prefer a darker shade.</p>
+          <div class="comment-reply mt-2">
+            <button class="btn-outline" style="padding: 0.5rem 1rem; font-size: 0.875rem;">
+              <i class="fas fa-reply"></i> Reply
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Footer -->
