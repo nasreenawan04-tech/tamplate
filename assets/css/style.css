@@ -1613,29 +1613,11 @@ body.dark-mode .comment-reply .btn-outline {
 
 .social-login-divider {
   text-align: center;
-  margin: 1.5rem 0;
-  position: relative;
+  margin: 1.5rem 0 1.25rem 0;
   color: var(--text-color);
-  opacity: 0.7;
+  opacity: 0.6;
   font-size: 0.9rem;
-}
-
-.social-login-divider::before,
-.social-login-divider::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 40%;
-  height: 1px;
-  background: var(--border-color);
-}
-
-.social-login-divider::before {
-  left: 0;
-}
-
-.social-login-divider::after {
-  right: 0;
+  font-weight: 400;
 }
 
 .social-login-buttons {
