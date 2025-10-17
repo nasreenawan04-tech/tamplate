@@ -226,23 +226,106 @@ img {
 }
 
 .hero-section h1 {
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
   margin-bottom: 1.5rem;
   animation: fadeInUp 0.8s ease;
+  line-height: 1.2;
 }
 
 .hero-section p {
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 2vw, 1.25rem);
   margin-bottom: 2rem;
   opacity: 0.95;
   animation: fadeInUp 0.8s ease 0.2s both;
+  line-height: 1.6;
 }
 
 .hero-buttons {
   display: flex;
   gap: 1rem;
   animation: fadeInUp 0.8s ease 0.4s both;
+  flex-wrap: wrap;
+}
+
+/* Hero section responsive adjustments */
+@media (max-width: 991px) {
+  .hero-section {
+    padding: 4rem 0;
+  }
+  
+  .hero-section h1 {
+    font-size: clamp(1.875rem, 4.5vw, 3rem);
+  }
+  
+  .hero-section p {
+    font-size: clamp(0.95rem, 1.8vw, 1.125rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 3rem 0;
+    text-align: center;
+  }
+  
+  .hero-section h1 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: 1rem;
+  }
+  
+  .hero-section p {
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-buttons {
+    justify-content: center;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-section {
+    padding: 2.5rem 0;
+  }
+  
+  .hero-section h1 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-section p {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+  
+  .hero-buttons .btn-primary,
+  .hero-buttons .btn-outline {
+    width: 100%;
+    text-align: center;
+    padding: 0.875rem 1.5rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero-section {
+    padding: 2rem 0;
+  }
+  
+  .hero-section h1 {
+    font-size: 1.5rem;
+  }
+  
+  .hero-section p {
+    font-size: 0.875rem;
+  }
 }
 
 /* ===== Buttons ===== */
@@ -641,18 +724,6 @@ img {
 
 /* ===== Responsive Design ===== */
 @media (max-width: 768px) {
-  .hero-section h1 {
-    font-size: 2.5rem;
-  }
-
-  .hero-section p {
-    font-size: 1rem;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-  }
-
   .section-title {
     font-size: 2rem;
   }
