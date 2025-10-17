@@ -1606,6 +1606,188 @@ body.dark-mode .comment-reply .btn-outline {
   background: var(--primary-color);
 }
 
+/* ===== Social Login Buttons ===== */
+.social-login-container {
+  margin: 2rem 0;
+}
+
+.social-login-divider {
+  text-align: center;
+  margin: 1.5rem 0;
+  position: relative;
+  color: var(--text-color);
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+.social-login-divider::before,
+.social-login-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: var(--border-color);
+}
+
+.social-login-divider::before {
+  left: 0;
+}
+
+.social-login-divider::after {
+  right: 0;
+}
+
+.social-login-buttons {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.social-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.5rem;
+  border: 2px solid var(--border-color);
+  border-radius: 0.5rem;
+  background: var(--card-color);
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.social-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.social-btn i {
+  font-size: 1.25rem;
+}
+
+/* Google Button */
+.social-btn.google {
+  border-color: var(--border-color);
+}
+
+.social-btn.google:hover {
+  background: #4285f4;
+  color: white;
+  border-color: #4285f4;
+}
+
+.social-btn.google i {
+  color: #4285f4;
+}
+
+.social-btn.google:hover i {
+  color: white;
+}
+
+/* Facebook Button */
+.social-btn.facebook {
+  border-color: var(--border-color);
+}
+
+.social-btn.facebook:hover {
+  background: #1877f2;
+  color: white;
+  border-color: #1877f2;
+}
+
+.social-btn.facebook i {
+  color: #1877f2;
+}
+
+.social-btn.facebook:hover i {
+  color: white;
+}
+
+/* Light Mode Specific Styles */
+body.light-mode .social-btn {
+  background: var(--light-card);
+  border-color: var(--border-light);
+  color: var(--light-text);
+}
+
+body.light-mode .social-btn:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+/* Dark Mode Specific Styles */
+body.dark-mode .social-btn {
+  background: var(--dark-card);
+  border-color: var(--border-dark);
+  color: var(--dark-text);
+}
+
+body.dark-mode .social-login-divider::before,
+body.dark-mode .social-login-divider::after {
+  background: var(--border-dark);
+}
+
+/* Tablet Responsive */
+@media (max-width: 768px) {
+  .social-login-buttons {
+    gap: 0.75rem;
+  }
+  
+  .social-btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+  }
+  
+  .social-btn i {
+    font-size: 1.125rem;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 576px) {
+  .social-login-container {
+    margin: 1.5rem 0;
+  }
+  
+  .social-login-divider {
+    font-size: 0.875rem;
+    margin: 1.25rem 0;
+  }
+  
+  .social-login-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .social-btn {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .social-btn i {
+    font-size: 1.25rem;
+  }
+}
+
+/* Extra Small Devices */
+@media (max-width: 400px) {
+  .social-login-divider {
+    font-size: 0.8125rem;
+  }
+  
+  .social-btn {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.95rem;
+  }
+}
+
 /* ===== Utility Classes ===== */
 .text-center {
   text-align: center;
