@@ -68,6 +68,15 @@
     <div class="container">
       <h1>Our Products</h1>
       <p>Discover amazing deals on premium quality products</p>
+      
+      <!-- Shop Page Search Bar -->
+      <div class="hero-search-bar" style="margin-top: 2rem;">
+        <input type="text" id="shopSearch" placeholder="Search for products, categories..." onkeyup="handleShopSearch(event)">
+        <button onclick="performShopSearch()">
+          <i class="fas fa-search"></i>
+          <span>Search</span>
+        </button>
+      </div>
     </div>
   </div>
 
