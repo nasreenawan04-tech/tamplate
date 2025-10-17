@@ -23,6 +23,25 @@ function toggleTheme() {
   document.body.className = newTheme;
   localStorage.setItem('theme', newTheme);
   updateThemeIcon();
+  
+  // Update navbar shadow for dark mode
+  const navbar = document.querySelector('.navbar');
+  if (navbar && window.scrollY > 50) {
+    navbar.style.boxShadow = newTheme === 'dark-mode'
+      ? '0 4px 12px rgba(0, 0, 0, 0.5)'
+      : '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+  }
+  
+  // Visual feedback for mobile
+  if (window.innerWidth <= 768) {
+    const themeBtn = document.querySelector('.theme-toggle');
+    if (themeBtn) {
+      themeBtn.style.transform = 'scale(1.1)';
+      setTimeout(() => {
+        themeBtn.style.transform = 'scale(1)';
+      }, 200);
+    }
+  }
 }
 
 function updateThemeIcon() {
@@ -36,24 +55,45 @@ function updateThemeIcon() {
 
 // Navbar Functionality
 function initNavbar() {
-  // Sticky navbar on scroll
+  // Sticky navbar on scroll with dark mode support
   window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (navbar) {
+      const isDarkMode = document.body.classList.contains('dark-mode');
       if (window.scrollY > 50) {
-        navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+        navbar.style.boxShadow = isDarkMode 
+          ? '0 4px 12px rgba(0, 0, 0, 0.5)' 
+          : '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
       } else {
-        navbar.style.boxShadow = '0 1px 2px 0 rgba(0, 0, 0, 0.05)';
+        navbar.style.boxShadow = isDarkMode
+          ? '0 2px 4px rgba(0, 0, 0, 0.3)'
+          : '0 1px 2px 0 rgba(0, 0, 0, 0.05)';
       }
     }
   });
 
   // Mobile menu toggle
   const navbarToggler = document.querySelector('.navbar-toggler');
-  if (navbarToggler) {
+  const navbarCollapse = document.querySelector('.navbar-collapse');
+  
+  if (navbarToggler && navbarCollapse) {
     navbarToggler.addEventListener('click', () => {
-      const navbarCollapse = document.querySelector('.navbar-collapse');
       navbarCollapse.classList.toggle('show');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!navbarToggler.contains(e.target) && !navbarCollapse.contains(e.target)) {
+        navbarCollapse.classList.remove('show');
+      }
+    });
+
+    // Close mobile menu when clicking a nav link
+    const navLinks = navbarCollapse.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navbarCollapse.classList.remove('show');
+      });
     });
   }
 
