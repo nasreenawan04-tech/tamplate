@@ -2028,8 +2028,8 @@ body.dark-mode .product-action-buttons .btn-outline:hover {
 }
 
 .navbar-toggler:hover {
-  background: var(--card-color);
-  border-color: var(--primary-color);
+  background: transparent;
+  border-color: var(--text-color);
 }
 
 .navbar-toggler:focus {
@@ -2043,8 +2043,7 @@ body.dark-mode .navbar-toggler {
 }
 
 body.dark-mode .navbar-toggler:hover {
-  border-color: var(--primary-color);
-  background: var(--dark-card);
+  border-color: var(--dark-text);
 }
 
 .navbar-toggler-icon {
@@ -2070,15 +2069,6 @@ body.dark-mode .navbar-toggler-icon {
 
 body.dark-mode .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(226, 232, 240, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M6 6l18 18M24 6L6 24'/%3e%3c/svg%3e");
-}
-
-/* Collapsed state - show menu closed */
-.navbar-toggler.collapsed .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(30, 41, 59, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-}
-
-body.dark-mode .navbar-toggler.collapsed .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(226, 232, 240, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 /* ===== Touch-Friendly Mobile Enhancements ===== */
