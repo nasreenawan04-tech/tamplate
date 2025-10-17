@@ -1052,41 +1052,72 @@ textarea.form-control {
   gap: 1rem;
   justify-content: center;
   width: 100%;
+  margin-top: 1rem;
 }
 
 .product-action-buttons .btn-outline {
-  flex: 1; /* Allows buttons to grow and shrink */
-  padding: 0.875rem 1rem; /* Adjusted padding for better fit */
-  border-radius: 0.5rem; /* Consistent border-radius */
-  background-color: transparent; /* Ensure it's transparent by default */
-  color: var(--primary-color); /* Default to primary color for light mode */
-  border: 2px solid var(--primary-color); /* Primary color border */
+  flex: 1;
+  padding: 0.875rem 1.5rem;
+  border-radius: 0.5rem;
+  background-color: transparent;
+  border: 2px solid;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.product-action-buttons .btn-outline i {
+  font-size: 1rem;
 }
 
 /* Light Mode Specific Styles for Product Action Buttons */
 body.light-mode .product-action-buttons .btn-outline {
   color: var(--primary-color);
   border-color: var(--primary-color);
+  background-color: transparent;
 }
 
 body.light-mode .product-action-buttons .btn-outline:hover {
   background-color: var(--primary-color);
   color: white;
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 /* Dark Mode Specific Styles for Product Action Buttons */
 body.dark-mode .product-action-buttons .btn-outline {
-  color: var(--light-text); /* Use light text color in dark mode */
-  border-color: var(--light-text); /* Use light border color in dark mode */
+  color: var(--dark-text);
+  border-color: var(--border-dark);
+  background-color: transparent;
 }
 
 body.dark-mode .product-action-buttons .btn-outline:hover {
   background-color: var(--primary-color);
   color: white;
   border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments for tablets */
+@media (max-width: 768px) {
+  .product-action-buttons {
+    gap: 0.75rem;
+  }
+
+  .product-action-buttons .btn-outline {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Responsive adjustments for mobile */
 @media (max-width: 576px) {
   .product-action-buttons {
     flex-direction: column;
@@ -1095,6 +1126,7 @@ body.dark-mode .product-action-buttons .btn-outline:hover {
 
   .product-action-buttons .btn-outline {
     width: 100%;
-    padding: 0.75rem 1rem;
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
   }
 }
