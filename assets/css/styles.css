@@ -273,6 +273,61 @@ img {
   flex-wrap: wrap;
 }
 
+/* Hero Search Bar */
+.hero-search-bar {
+  display: flex;
+  gap: 0.75rem;
+  margin: 2rem 0;
+  max-width: 600px;
+  animation: fadeInUp 0.8s ease 0.3s both;
+}
+
+.hero-search-bar input {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 3rem;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--light-text);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.hero-search-bar input:focus {
+  outline: none;
+  border-color: white;
+  background: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.hero-search-bar input::placeholder {
+  color: rgba(30, 41, 59, 0.5);
+}
+
+.hero-search-bar button {
+  padding: 1rem 2rem;
+  background: white;
+  color: var(--primary-color);
+  border: none;
+  border-radius: 3rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.hero-search-bar button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.hero-search-bar button i {
+  font-size: 1rem;
+}
+
 /* Hero section responsive adjustments */
 @media (max-width: 991px) {
   .hero-section {
@@ -285,6 +340,10 @@ img {
   
   .hero-section p {
     font-size: clamp(0.95rem, 1.8vw, 1.125rem);
+  }
+  
+  .hero-search-bar {
+    max-width: 100%;
   }
 }
 
@@ -323,6 +382,23 @@ img {
   .hero-section p {
     font-size: 0.95rem;
     margin-bottom: 1.5rem;
+  }
+  
+  .hero-search-bar {
+    flex-direction: column;
+    margin: 1.5rem 0;
+  }
+  
+  .hero-search-bar input {
+    width: 100%;
+    padding: 0.875rem 1.25rem;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  .hero-search-bar button {
+    width: 100%;
+    justify-content: center;
+    padding: 0.875rem 1.5rem;
   }
   
   .hero-buttons {

@@ -83,6 +83,16 @@
         <div class="col-lg-6 hero-content">
           <h1>Welcome to ShopVerse</h1>
           <p>Discover amazing products at unbeatable prices. Your one-stop destination for fashion, electronics, furniture, and beauty products.</p>
+          
+          <!-- Hero Search Bar -->
+          <div class="hero-search-bar">
+            <input type="text" id="heroSearch" placeholder="Search for products, categories..." onkeyup="handleHeroSearch(event)">
+            <button onclick="performHeroSearch()">
+              <i class="fas fa-search"></i>
+              <span>Search</span>
+            </button>
+          </div>
+          
           <div class="hero-buttons">
             <a href="pages/shop.html" class="btn-primary">Shop Now</a>
             <a href="pages/about.html" class="btn-outline">Learn More</a>
