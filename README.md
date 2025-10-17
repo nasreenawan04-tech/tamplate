@@ -333,3 +333,5 @@ For support with this template:
 **Author**: ShopVerse Template
 
 Thank you for choosing ShopVerse! We hope this template serves you well. Happy selling! 🛍️
+#   t a m p l a t e  
+ 
