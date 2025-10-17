@@ -1523,12 +1523,6 @@ body.dark-mode .comment-reply .btn-outline {
   margin-bottom: 1rem;
 }
 
-.page-header .hero-search-bar {
-  max-width: 650px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 /* About Page */
 .team-member {
   text-align: center;
