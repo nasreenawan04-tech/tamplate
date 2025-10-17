@@ -23,7 +23,7 @@ function toggleTheme() {
   document.body.className = newTheme;
   localStorage.setItem('theme', newTheme);
   updateThemeIcon();
-  
+
   // Update navbar shadow for dark mode
   const navbar = document.querySelector('.navbar');
   if (navbar && window.scrollY > 50) {
@@ -31,7 +31,7 @@ function toggleTheme() {
       ? '0 4px 12px rgba(0, 0, 0, 0.5)'
       : '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
   }
-  
+
   // Visual feedback for mobile
   if (window.innerWidth <= 768) {
     const themeBtn = document.querySelector('.theme-toggle');
@@ -75,7 +75,7 @@ function initNavbar() {
   // Mobile menu toggle
   const navbarToggler = document.querySelector('.navbar-toggler');
   const navbarCollapse = document.querySelector('.navbar-collapse');
-  
+
   if (navbarToggler && navbarCollapse) {
     navbarToggler.addEventListener('click', () => {
       navbarCollapse.classList.toggle('show');
@@ -113,11 +113,11 @@ async function loadProducts() {
   try {
     const response = await fetch('/assets/data/products.json');
     products = await response.json();
-    
+
     if (document.getElementById('productsGrid')) {
       displayProducts(products);
     }
-    
+
     if (document.getElementById('featuredProducts')) {
       displayFeaturedProducts(products.slice(0, 8));
     }
@@ -194,20 +194,20 @@ function generateStars(rating) {
   const fullStars = Math.floor(rating);
   const hasHalfStar = rating % 1 !== 0;
   let stars = '';
-  
+
   for (let i = 0; i < fullStars; i++) {
     stars += '<i class="fas fa-star"></i>';
   }
-  
+
   if (hasHalfStar) {
     stars += '<i class="fas fa-star-half-alt"></i>';
   }
-  
+
   const emptyStars = 5 - Math.ceil(rating);
   for (let i = 0; i < emptyStars; i++) {
     stars += '<i class="far fa-star"></i>';
   }
-  
+
   return stars;
 }
 
@@ -215,14 +215,14 @@ function generateStars(rating) {
 function filterProducts() {
   const category = document.getElementById('categoryFilter')?.value || 'all';
   const sortBy = document.getElementById('sortFilter')?.value || 'default';
-  
+
   let filtered = [...products];
-  
+
   // Filter by category
   if (category !== 'all') {
     filtered = filtered.filter(p => p.category === category);
   }
-  
+
   // Sort products
   switch (sortBy) {
     case 'price-low':
@@ -238,7 +238,7 @@ function filterProducts() {
       filtered.sort((a, b) => a.name.localeCompare(b.name));
       break;
   }
-  
+
   displayProducts(filtered);
 }
 
@@ -253,7 +253,7 @@ function addToCart(productId) {
   if (!product) return;
 
   const existingItem = cart.find(item => item.id === productId);
-  
+
   if (existingItem) {
     existingItem.quantity += 1;
   } else {
@@ -262,7 +262,7 @@ function addToCart(productId) {
       quantity: 1
     });
   }
-  
+
   saveCart();
   updateCartBadge();
   showNotification('Product added to cart!', 'success');
@@ -340,7 +340,7 @@ function updateQuantity(productId, change) {
   if (!item) return;
 
   item.quantity += change;
-  
+
   if (item.quantity <= 0) {
     removeFromCart(productId);
     return;
@@ -464,7 +464,7 @@ function displayProductDetail(product) {
   // Gallery
   const mainImage = document.getElementById('mainImage');
   const thumbnails = document.getElementById('thumbnailImages');
-  
+
   if (mainImage && product.images && product.images.length > 0) {
     mainImage.src = product.images[0];
     mainImage.alt = product.name;
@@ -483,7 +483,7 @@ function displayProductDetail(product) {
   document.getElementById('productRating').innerHTML = generateStars(product.rating);
   document.getElementById('reviewCount').textContent = `(${product.reviews} reviews)`;
   document.getElementById('productPrice').textContent = `$${product.price.toFixed(2)}`;
-  
+
   if (product.originalPrice > 0) {
     document.getElementById('productOriginalPrice').textContent = `$${product.originalPrice.toFixed(2)}`;
   } else {
@@ -507,6 +507,21 @@ function displayProductDetail(product) {
   // Add to cart button
   const addToCartBtn = document.getElementById('addToCartBtn');
   addToCartBtn.onclick = () => addToCart(product.id);
+
+  // Product action buttons (Wishlist and Share)
+  const productActionButtonsContainer = document.getElementById('productActionButtons');
+  if (productActionButtonsContainer) {
+    productActionButtonsContainer.innerHTML = `
+      <div class="product-action-buttons">
+        <button class="btn-outline flex-fill" onclick="addToWishlist(${product.id})">
+          <i class="far fa-heart"></i> Add to Wishlist
+        </button>
+        <button class="btn-outline flex-fill" onclick="shareProduct(${product.id}, '${product.name.replace(/'/g, "\\'")}')">
+          <i class="fas fa-share-alt"></i> Share
+        </button>
+      </div>
+    `;
+  }
 }
 
 // Change Main Image
@@ -519,7 +534,7 @@ function changeMainImage(imageSrc, thumbnail) {
 // Form Validation
 function validateCheckoutForm(event) {
   event.preventDefault();
-  
+
   const form = event.target;
   const inputs = form.querySelectorAll('input[required], select[required]');
   let isValid = true;
@@ -599,11 +614,11 @@ function handleContactForm(event) {
 // Comment Submission
 function handleCommentSubmit(event) {
   event.preventDefault();
-  
+
   const name = document.getElementById('commentName').value;
   const email = document.getElementById('commentEmail').value;
   const comment = document.getElementById('commentText').value;
-  
+
   if (name && email && comment) {
     // Create new comment element
     const commentHTML = `
@@ -622,25 +637,47 @@ function handleCommentSubmit(event) {
         </div>
       </div>
     `;
-    
+
     // Add to comments list
     const commentsList = document.getElementById('commentsList');
     if (commentsList) {
       commentsList.insertAdjacentHTML('afterbegin', commentHTML);
     }
-    
+
     // Reset form
     event.target.reset();
-    
+
     // Show success notification
     showNotification('Comment posted successfully!', 'success');
-    
+
     // Scroll to new comment
     setTimeout(() => {
       commentsList.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 100);
   }
 }
+
+// Share Product Function
+function shareProduct(productId, productName) {
+  const url = `${window.location.origin}/pages/product-detail.html?id=${productId}`;
+  const message = `Check out this amazing product: ${productName}! ${url}`;
+
+  // Basic sharing using Web Share API if available, otherwise fallback
+  if (navigator.share) {
+    navigator.share({
+      title: productName,
+      text: `Check out this amazing product: ${productName}`,
+      url: url,
+    })
+    .then(() => console.log('Product shared successfully'))
+    .catch((error) => console.error('Error sharing product:', error));
+  } else {
+    // Fallback for browsers that don't support Web Share API
+    prompt('Copy this link to share:', url);
+    showNotification('Link copied to clipboard. Share it manually!', 'info');
+  }
+}
+
 
 // Animation styles
 const style = document.createElement('style');
@@ -655,7 +692,7 @@ style.textContent = `
       opacity: 1;
     }
   }
-  
+
   @keyframes slideOutRight {
     from {
       transform: translateX(0);
