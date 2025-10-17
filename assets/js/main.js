@@ -83,8 +83,10 @@ function initNavbar() {
       const isShown = navbarCollapse.classList.contains('show');
       if (isShown) {
         navbarCollapse.classList.remove('show');
+        navbarToggler.setAttribute('aria-expanded', 'false');
       } else {
         navbarCollapse.classList.add('show');
+        navbarToggler.setAttribute('aria-expanded', 'true');
       }
     });
 
@@ -93,6 +95,7 @@ function initNavbar() {
       const isClickInside = navbarToggler.contains(e.target) || navbarCollapse.contains(e.target);
       if (!isClickInside && navbarCollapse.classList.contains('show')) {
         navbarCollapse.classList.remove('show');
+        navbarToggler.setAttribute('aria-expanded', 'false');
       }
     });
 
@@ -102,6 +105,7 @@ function initNavbar() {
       link.addEventListener('click', () => {
         if (window.innerWidth < 992) { // Only on mobile/tablet
           navbarCollapse.classList.remove('show');
+          navbarToggler.setAttribute('aria-expanded', 'false');
         }
       });
     });
@@ -110,6 +114,7 @@ function initNavbar() {
     window.addEventListener('resize', () => {
       if (window.innerWidth >= 992 && navbarCollapse.classList.contains('show')) {
         navbarCollapse.classList.remove('show');
+        navbarToggler.setAttribute('aria-expanded', 'false');
       }
     });
   }
