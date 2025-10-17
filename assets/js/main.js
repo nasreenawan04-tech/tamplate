@@ -134,13 +134,6 @@ async function loadProducts() {
     if (document.getElementById('productsGrid')) {
       // Check if there's a search term and apply filters
       const searchTerm = getSearchTermFromURL();
-      
-      // Pre-fill shop search input if search term exists
-      const shopSearchInput = document.getElementById('shopSearch');
-      if (shopSearchInput && searchTerm) {
-        shopSearchInput.value = searchTerm;
-      }
-      
       if (searchTerm) {
         filterProducts();
       } else {
@@ -628,33 +621,6 @@ function performHeroSearch() {
     window.location.href = 'pages/shop.html?search=' + encodeURIComponent(searchTerm);
   } else {
     showNotification('Please enter a search term', 'info');
-  }
-}
-
-// Shop Page Search Functionality
-function handleShopSearch(event) {
-  if (event.key === 'Enter') {
-    performShopSearch();
-  }
-}
-
-function performShopSearch() {
-  const searchInput = document.getElementById('shopSearch');
-  const searchTerm = searchInput?.value.trim();
-  
-  if (searchTerm) {
-    // Update URL with search parameter and filter products
-    const url = new URL(window.location.href);
-    url.searchParams.set('search', searchTerm);
-    window.history.pushState({}, '', url);
-    filterProducts();
-  } else {
-    // Clear search if empty
-    const url = new URL(window.location.href);
-    url.searchParams.delete('search');
-    window.history.pushState({}, '', url);
-    searchInput.value = '';
-    filterProducts();
   }
 }
 
