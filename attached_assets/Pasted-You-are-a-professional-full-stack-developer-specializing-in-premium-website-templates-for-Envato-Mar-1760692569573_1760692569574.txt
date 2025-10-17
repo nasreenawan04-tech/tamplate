@@ -1,0 +1,32 @@
+You are a professional full-stack developer specializing in premium website templates for Envato Market and ThemeForest.  
+I want to create a **fully responsive, modern, and high-performance eCommerce website template** named **"ShopVerse"** using **HTML, CSS, JavaScript, and Bootstrap 5** (no frameworks like React or Next.js).  
+
+Your goals:
+1. **Purpose:** Build a clean, fast, and visually appealing eCommerce website template suitable for multipurpose stores — fashion, electronics, furniture, beauty, etc.
+2. **Tech Stack:** HTML5 + CSS3 + JavaScript (Vanilla) + Bootstrap 5.
+3. **Design Style:** Elegant, minimalist, modern — with soft colors, hover effects, smooth animations, and consistent typography.
+4. **Pages to Include:**
+   - 🏠 Home Page (hero banner, product grid, categories, CTA)
+   - 🛍️ Shop Page (filter + sort products)
+   - 📦 Product Details Page (gallery, description, reviews, add-to-cart)
+   - 🧾 Cart Page (update quantity, remove items)
+   - 💳 Checkout Page (billing + shipping form)
+   - 👤 Login / Register Page
+   - 📞 Contact Page (contact form + map)
+   - 📘 About Us Page
+5. **Features:**
+   - Fully responsive (desktop, tablet, mobile)
+   - Product cards with hover animation
+   - Sticky header with search bar and cart icon
+   - Dark & Light mode toggle
+   - Newsletter subscription section
+   - Footer with links and social icons
+   - Dummy product data using JSON or static HTML
+6. **SEO + Performance:**
+   - SEO-friendly meta tags, alt tags, and heading structure
+   - Fast loading time and optimized images
+   - Semantic HTML structure for better Google indexing
+7. **Documentation:** Add a simple `README.md` file describing how to edit the template and structure of files for Envato submission.
+8. **Final Deliverable:** A complete `ecommerce-template` folder that I can zip and upload directly to **Envato** after reviewing.
+
+Please generate the full folder structure and complete code for all pages. Include sample images and product placeholders (from Unsplash or Lorem Picsum links). 
