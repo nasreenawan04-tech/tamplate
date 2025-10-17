@@ -800,6 +800,77 @@ function handleCommentSubmit(event) {
   }
 }
 
+// Display Wishlist Items
+function displayWishlistItems() {
+  const wishlistContainer = document.getElementById('wishlistItems');
+  const clearBtn = document.getElementById('clearWishlistBtn');
+  
+  if (!wishlistContainer) return;
+
+  if (wishlist.length === 0) {
+    wishlistContainer.innerHTML = `
+      <div class="text-center py-5">
+        <i class="fas fa-heart" style="font-size: 4rem; opacity: 0.3;"></i>
+        <h3 class="mt-3">Your wishlist is empty</h3>
+        <p>Add products you love to see them here!</p>
+        <a href="shop.html" class="btn-secondary mt-3">Browse Products</a>
+      </div>
+    `;
+    if (clearBtn) clearBtn.style.display = 'none';
+    return;
+  }
+
+  if (clearBtn) clearBtn.style.display = 'block';
+
+  wishlistContainer.innerHTML = `
+    <div class="row">
+      ${wishlist.map(product => `
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="product-card">
+            <div class="product-image">
+              <img src="${product.image}" alt="${product.name}">
+              ${product.badge ? `<div class="product-badge ${product.badge.toLowerCase()}">${product.badge}</div>` : ''}
+              <div class="product-actions">
+                <button class="action-btn" onclick="viewProduct(${product.id})" title="Quick View">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="action-btn" onclick="removeFromWishlist(${product.id}); displayWishlistItems();" title="Remove from Wishlist">
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="product-info">
+              <div class="product-category">${product.category}</div>
+              <h3 class="product-name">${product.name}</h3>
+              <div class="product-rating">
+                <div class="stars">${generateStars(product.rating)}</div>
+                <span class="review-count">(${product.reviews})</span>
+              </div>
+              <div class="product-price">
+                <span class="current-price">$${product.price.toFixed(2)}</span>
+                ${product.originalPrice > 0 ? `<span class="original-price">$${product.originalPrice.toFixed(2)}</span>` : ''}
+              </div>
+              <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+// Clear Wishlist
+function clearWishlist() {
+  if (confirm('Are you sure you want to clear your wishlist?')) {
+    wishlist = [];
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    displayWishlistItems();
+    showNotification('Wishlist cleared!', 'info');
+  }
+}
+
 // Animation styles
 const style = document.createElement('style');
 style.textContent = `
