@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn about ShopVerse - your trusted eCommerce partner. Discover our mission, values, and team.">
+  <title>About Us - ShopVerse</title>
+  
+  <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body class="light-mode">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html">
+        <i class="fas fa-shopping-bag"></i> ShopVerse
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="shop.html">Shop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+        
+        <div class="search-bar d-none d-lg-block">
+          <input type="text" placeholder="Search products...">
+          <i class="fas fa-search search-icon"></i>
+        </div>
+        
+        <div class="navbar-icons">
+          <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+            <i class="fas fa-moon" id="themeIcon"></i>
+          </button>
+          <a href="auth.html" class="icon-btn" title="Account">
+            <i class="fas fa-user"></i>
+          </a>
+          <a href="cart.html" class="icon-btn" title="Shopping Cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge" id="cartBadge">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container">
+      <h1>About ShopVerse</h1>
+      <p>Your trusted partner in online shopping</p>
+    </div>
+  </div>
+
+  <!-- About Content -->
+  <div class="container py-5">
+    <!-- Our Story -->
+    <div class="row align-items-center mb-5">
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop" alt="About Us" style="border-radius: 1rem; width: 100%;">
+      </div>
+      <div class="col-lg-6">
+        <h2 class="mb-4">Our Story</h2>
+        <p>Founded in 2020, ShopVerse began with a simple mission: to provide high-quality products at affordable prices while delivering exceptional customer service. What started as a small online store has grown into a trusted eCommerce platform serving thousands of satisfied customers worldwide.</p>
+        <p>We believe in the power of choice and convenience. Our carefully curated selection spans fashion, electronics, furniture, and beauty products, ensuring that every customer finds exactly what they're looking for.</p>
+        <p>At ShopVerse, we're not just selling products – we're building relationships and creating shopping experiences that customers love and trust.</p>
+      </div>
+    </div>
+
+    <!-- Mission & Values -->
+    <div class="row mb-5">
+      <div class="col-12">
+        <h2 class="section-title">Our Mission & Values</h2>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="product-details-content text-center h-100">
+          <div class="category-icon mb-3">
+            <i class="fas fa-heart"></i>
+          </div>
+          <h4>Customer First</h4>
+          <p>We put our customers at the heart of everything we do. Your satisfaction is our top priority, and we strive to exceed expectations with every interaction.</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="product-details-content text-center h-100">
+          <div class="category-icon mb-3">
+            <i class="fas fa-award"></i>
+          </div>
+          <h4>Quality Assured</h4>
+          <p>Every product in our store is carefully selected and tested to ensure it meets our high standards of quality and reliability.</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="product-details-content text-center h-100">
+          <div class="category-icon mb-3">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <h4>Sustainability</h4>
+          <p>We're committed to sustainable practices, from eco-friendly packaging to partnering with responsible suppliers.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Statistics -->
+    <div class="row text-center mb-5 py-5" style="background: var(--card-color); border-radius: 1rem;">
+      <div class="col-6 col-md-3 mb-4 mb-md-0">
+        <h2 style="color: var(--primary-color); font-size: 3rem; font-weight: 700;">50K+</h2>
+        <p style="opacity: 0.8;">Happy Customers</p>
+      </div>
+      <div class="col-6 col-md-3 mb-4 mb-md-0">
+        <h2 style="color: var(--primary-color); font-size: 3rem; font-weight: 700;">10K+</h2>
+        <p style="opacity: 0.8;">Products</p>
+      </div>
+      <div class="col-6 col-md-3">
+        <h2 style="color: var(--primary-color); font-size: 3rem; font-weight: 700;">100+</h2>
+        <p style="opacity: 0.8;">Brands</p>
+      </div>
+      <div class="col-6 col-md-3">
+        <h2 style="color: var(--primary-color); font-size: 3rem; font-weight: 700;">4.8</h2>
+        <p style="opacity: 0.8;">Average Rating</p>
+      </div>
+    </div>
+
+    <!-- Team Section -->
+    <div class="row">
+      <div class="col-12">
+        <h2 class="section-title">Meet Our Team</h2>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="team-member">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop" alt="Team Member">
+          <h4>John Anderson</h4>
+          <p style="color: var(--primary-color); font-weight: 500;">CEO & Founder</p>
+          <div class="social-links justify-content-center">
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="team-member">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop" alt="Team Member">
+          <h4>Sarah Miller</h4>
+          <p style="color: var(--primary-color); font-weight: 500;">Head of Marketing</p>
+          <div class="social-links justify-content-center">
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="team-member">
+          <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop" alt="Team Member">
+          <h4>David Chen</h4>
+          <p style="color: var(--primary-color); font-weight: 500;">Product Manager</p>
+          <div class="social-links justify-content-center">
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="team-member">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&h=300&fit=crop" alt="Team Member">
+          <h4>Emily Davis</h4>
+          <p style="color: var(--primary-color); font-weight: 500;">Customer Success</p>
+          <div class="social-links justify-content-center">
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4><i class="fas fa-shopping-bag"></i> ShopVerse</h4>
+          <p>Your trusted eCommerce partner for quality products at affordable prices. Shop with confidence!</p>
+          <div class="social-links">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Customer Service</h4>
+          <ul class="footer-links">
+            <li><a href="#">Shipping Policy</a></li>
+            <li><a href="#">Returns & Exchanges</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Track Order</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Contact Info</h4>
+          <ul class="footer-links">
+            <li><i class="fas fa-map-marker-alt"></i> 123 Shopping Street, NY 10001</li>
+            <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+            <li><i class="fas fa-envelope"></i> info@shopverse.com</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 ShopVerse. All rights reserved. Designed with <i class="fas fa-heart" style="color: var(--accent-color);"></i> for Envato Market</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

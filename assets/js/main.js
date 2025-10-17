@@ -1,0 +1,584 @@
+// Cart State Management
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let products = [];
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+  loadProducts();
+  updateCartBadge();
+  initNavbar();
+});
+
+// Theme Management
+function initTheme() {
+  const savedTheme = localStorage.getItem('theme') || 'light-mode';
+  document.body.className = savedTheme;
+  updateThemeIcon();
+}
+
+function toggleTheme() {
+  const currentTheme = document.body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode';
+  const newTheme = currentTheme === 'dark-mode' ? 'light-mode' : 'dark-mode';
+  document.body.className = newTheme;
+  localStorage.setItem('theme', newTheme);
+  updateThemeIcon();
+}
+
+function updateThemeIcon() {
+  const themeIcon = document.getElementById('themeIcon');
+  if (themeIcon) {
+    themeIcon.className = document.body.classList.contains('dark-mode') 
+      ? 'fas fa-sun' 
+      : 'fas fa-moon';
+  }
+}
+
+// Navbar Functionality
+function initNavbar() {
+  // Sticky navbar on scroll
+  window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+      if (window.scrollY > 50) {
+        navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+      } else {
+        navbar.style.boxShadow = '0 1px 2px 0 rgba(0, 0, 0, 0.05)';
+      }
+    }
+  });
+
+  // Mobile menu toggle
+  const navbarToggler = document.querySelector('.navbar-toggler');
+  if (navbarToggler) {
+    navbarToggler.addEventListener('click', () => {
+      const navbarCollapse = document.querySelector('.navbar-collapse');
+      navbarCollapse.classList.toggle('show');
+    });
+  }
+
+  // Set active page
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const navLinks = document.querySelectorAll('.nav-link');
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+      link.classList.add('active');
+    }
+  });
+}
+
+// Load Products
+async function loadProducts() {
+  try {
+    const response = await fetch('../assets/data/products.json');
+    products = await response.json();
+    
+    if (document.getElementById('productsGrid')) {
+      displayProducts(products);
+    }
+    
+    if (document.getElementById('featuredProducts')) {
+      displayFeaturedProducts(products.slice(0, 8));
+    }
+  } catch (error) {
+    console.error('Error loading products:', error);
+  }
+}
+
+// Display Products (Shop Page)
+function displayProducts(productsToDisplay) {
+  const grid = document.getElementById('productsGrid');
+  if (!grid) return;
+
+  grid.innerHTML = productsToDisplay.map(product => `
+    <div class="col-md-6 col-lg-4 mb-4">
+      ${createProductCard(product)}
+    </div>
+  `).join('');
+}
+
+// Display Featured Products (Home Page)
+function displayFeaturedProducts(productsToDisplay) {
+  const grid = document.getElementById('featuredProducts');
+  if (!grid) return;
+
+  grid.innerHTML = productsToDisplay.map(product => `
+    <div class="col-md-6 col-lg-3 mb-4">
+      ${createProductCard(product)}
+    </div>
+  `).join('');
+}
+
+// Create Product Card HTML
+function createProductCard(product) {
+  const discount = product.originalPrice > 0 
+    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
+    : 0;
+
+  return `
+    <div class="product-card">
+      <div class="product-image">
+        <img src="${product.image}" alt="${product.name}">
+        ${product.badge ? `<div class="product-badge ${product.badge.toLowerCase()}">${product.badge}</div>` : ''}
+        <div class="product-actions">
+          <button class="action-btn" onclick="viewProduct(${product.id})" title="Quick View">
+            <i class="fas fa-eye"></i>
+          </button>
+          <button class="action-btn" onclick="addToWishlist(${product.id})" title="Add to Wishlist">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-category">${product.category}</div>
+        <h3 class="product-name">${product.name}</h3>
+        <div class="product-rating">
+          <div class="stars">${generateStars(product.rating)}</div>
+          <span class="review-count">(${product.reviews})</span>
+        </div>
+        <div class="product-price">
+          <span class="current-price">$${product.price.toFixed(2)}</span>
+          ${product.originalPrice > 0 ? `<span class="original-price">$${product.originalPrice.toFixed(2)}</span>` : ''}
+        </div>
+        <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
+          <i class="fas fa-shopping-cart"></i> Add to Cart
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+// Generate Star Rating
+function generateStars(rating) {
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating % 1 !== 0;
+  let stars = '';
+  
+  for (let i = 0; i < fullStars; i++) {
+    stars += '<i class="fas fa-star"></i>';
+  }
+  
+  if (hasHalfStar) {
+    stars += '<i class="fas fa-star-half-alt"></i>';
+  }
+  
+  const emptyStars = 5 - Math.ceil(rating);
+  for (let i = 0; i < emptyStars; i++) {
+    stars += '<i class="far fa-star"></i>';
+  }
+  
+  return stars;
+}
+
+// Filter Products
+function filterProducts() {
+  const category = document.getElementById('categoryFilter')?.value || 'all';
+  const sortBy = document.getElementById('sortFilter')?.value || 'default';
+  
+  let filtered = [...products];
+  
+  // Filter by category
+  if (category !== 'all') {
+    filtered = filtered.filter(p => p.category === category);
+  }
+  
+  // Sort products
+  switch (sortBy) {
+    case 'price-low':
+      filtered.sort((a, b) => a.price - b.price);
+      break;
+    case 'price-high':
+      filtered.sort((a, b) => b.price - a.price);
+      break;
+    case 'rating':
+      filtered.sort((a, b) => b.rating - a.rating);
+      break;
+    case 'name':
+      filtered.sort((a, b) => a.name.localeCompare(b.name));
+      break;
+  }
+  
+  displayProducts(filtered);
+}
+
+// View Product
+function viewProduct(productId) {
+  window.location.href = `pages/product-detail.html?id=${productId}`;
+}
+
+// Add to Cart
+function addToCart(productId) {
+  const product = products.find(p => p.id === productId);
+  if (!product) return;
+
+  const existingItem = cart.find(item => item.id === productId);
+  
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({
+      ...product,
+      quantity: 1
+    });
+  }
+  
+  saveCart();
+  updateCartBadge();
+  showNotification('Product added to cart!', 'success');
+}
+
+// Add to Wishlist
+function addToWishlist(productId) {
+  showNotification('Product added to wishlist!', 'success');
+}
+
+// Update Cart Badge
+function updateCartBadge() {
+  const badge = document.getElementById('cartBadge');
+  if (badge) {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    badge.textContent = totalItems;
+    badge.style.display = totalItems > 0 ? 'block' : 'none';
+  }
+}
+
+// Save Cart to LocalStorage
+function saveCart() {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+// Display Cart Items
+function displayCartItems() {
+  const cartContainer = document.getElementById('cartItems');
+  if (!cartContainer) return;
+
+  if (cart.length === 0) {
+    cartContainer.innerHTML = `
+      <div class="text-center py-5">
+        <i class="fas fa-shopping-cart" style="font-size: 4rem; opacity: 0.3;"></i>
+        <h3 class="mt-3">Your cart is empty</h3>
+        <p>Add some products to get started!</p>
+        <a href="shop.html" class="btn-secondary mt-3">Shop Now</a>
+      </div>
+    `;
+    updateCartSummary();
+    return;
+  }
+
+  cartContainer.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+      <div class="cart-item-details">
+        <h4>${item.name}</h4>
+        <p class="product-category">${item.category}</p>
+        <div class="quantity-controls">
+          <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">
+            <i class="fas fa-minus"></i>
+          </button>
+          <span style="min-width: 3rem; text-align: center; font-weight: 600;">${item.quantity}</span>
+          <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="text-end">
+        <div class="current-price mb-3">$${(item.price * item.quantity).toFixed(2)}</div>
+        <button class="remove-btn" onclick="removeFromCart(${item.id})">
+          <i class="fas fa-trash"></i> Remove
+        </button>
+      </div>
+    </div>
+  `).join('');
+
+  updateCartSummary();
+}
+
+// Update Quantity
+function updateQuantity(productId, change) {
+  const item = cart.find(i => i.id === productId);
+  if (!item) return;
+
+  item.quantity += change;
+  
+  if (item.quantity <= 0) {
+    removeFromCart(productId);
+    return;
+  }
+
+  saveCart();
+  displayCartItems();
+  updateCartBadge();
+}
+
+// Remove from Cart
+function removeFromCart(productId) {
+  cart = cart.filter(item => item.id !== productId);
+  saveCart();
+  displayCartItems();
+  updateCartBadge();
+  showNotification('Item removed from cart', 'info');
+}
+
+// Update Cart Summary
+function updateCartSummary() {
+  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const shipping = subtotal > 0 ? 10 : 0;
+  const tax = subtotal * 0.1;
+  const total = subtotal + shipping + tax;
+
+  const summaryHTML = `
+    <h3 class="mb-4">Order Summary</h3>
+    <div class="summary-row">
+      <span>Subtotal:</span>
+      <span>$${subtotal.toFixed(2)}</span>
+    </div>
+    <div class="summary-row">
+      <span>Shipping:</span>
+      <span>${shipping > 0 ? '$' + shipping.toFixed(2) : 'Free'}</span>
+    </div>
+    <div class="summary-row">
+      <span>Tax (10%):</span>
+      <span>$${tax.toFixed(2)}</span>
+    </div>
+    <div class="summary-row">
+      <strong>Total:</strong>
+      <strong class="summary-total">$${total.toFixed(2)}</strong>
+    </div>
+    <a href="${cart.length > 0 ? 'checkout.html' : '#'}" class="btn-secondary w-100 mt-3" ${cart.length === 0 ? 'style="opacity: 0.5; pointer-events: none;"' : ''}>
+      Proceed to Checkout
+    </a>
+  `;
+
+  const summaryElement = document.getElementById('cartSummary');
+  if (summaryElement) {
+    summaryElement.innerHTML = summaryHTML;
+  }
+}
+
+// Newsletter Subscription
+function subscribeNewsletter(event) {
+  event.preventDefault();
+  const email = document.getElementById('newsletterEmail')?.value;
+  if (email) {
+    showNotification('Thank you for subscribing!', 'success');
+    document.getElementById('newsletterEmail').value = '';
+  }
+}
+
+// Show Notification
+function showNotification(message, type = 'success') {
+  const notification = document.createElement('div');
+  notification.style.cssText = `
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background: ${type === 'success' ? 'var(--success-color)' : type === 'info' ? 'var(--primary-color)' : 'var(--danger-color)'};
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-lg);
+    z-index: 9999;
+    animation: slideInRight 0.3s ease;
+  `;
+  notification.textContent = message;
+  document.body.appendChild(notification);
+
+  setTimeout(() => {
+    notification.style.animation = 'slideOutRight 0.3s ease';
+    setTimeout(() => notification.remove(), 300);
+  }, 3000);
+}
+
+// Product Detail Page
+async function loadProductDetail() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = parseInt(urlParams.get('id'));
+
+  if (!productId) {
+    window.location.href = '../shop.html';
+    return;
+  }
+
+  try {
+    const response = await fetch('../assets/data/products.json');
+    products = await response.json();
+    const product = products.find(p => p.id === productId);
+
+    if (!product) {
+      window.location.href = '../shop.html';
+      return;
+    }
+
+    displayProductDetail(product);
+  } catch (error) {
+    console.error('Error loading product:', error);
+  }
+}
+
+// Display Product Detail
+function displayProductDetail(product) {
+  // Update page title
+  document.title = `${product.name} - ShopVerse`;
+
+  // Gallery
+  const mainImage = document.getElementById('mainImage');
+  const thumbnails = document.getElementById('thumbnailImages');
+  
+  if (mainImage && product.images && product.images.length > 0) {
+    mainImage.src = product.images[0];
+    mainImage.alt = product.name;
+  }
+
+  if (thumbnails && product.images) {
+    thumbnails.innerHTML = product.images.map((img, index) => `
+      <img src="${img}" alt="${product.name}" class="thumbnail ${index === 0 ? 'active' : ''}" 
+           onclick="changeMainImage('${img}', this)">
+    `).join('');
+  }
+
+  // Product Info
+  document.getElementById('productName').textContent = product.name;
+  document.getElementById('productCategory').textContent = product.category;
+  document.getElementById('productRating').innerHTML = generateStars(product.rating);
+  document.getElementById('reviewCount').textContent = `(${product.reviews} reviews)`;
+  document.getElementById('productPrice').textContent = `$${product.price.toFixed(2)}`;
+  
+  if (product.originalPrice > 0) {
+    document.getElementById('productOriginalPrice').textContent = `$${product.originalPrice.toFixed(2)}`;
+  } else {
+    document.getElementById('productOriginalPrice').style.display = 'none';
+  }
+
+  document.getElementById('productDescription').textContent = product.description;
+
+  // Features
+  if (product.features) {
+    document.getElementById('productFeatures').innerHTML = product.features.map(feature => `
+      <li>${feature}</li>
+    `).join('');
+  }
+
+  // Stock status
+  document.getElementById('stockStatus').innerHTML = product.inStock 
+    ? '<i class="fas fa-check-circle"></i> In Stock' 
+    : '<i class="fas fa-times-circle"></i> Out of Stock';
+
+  // Add to cart button
+  const addToCartBtn = document.getElementById('addToCartBtn');
+  addToCartBtn.onclick = () => addToCart(product.id);
+}
+
+// Change Main Image
+function changeMainImage(imageSrc, thumbnail) {
+  document.getElementById('mainImage').src = imageSrc;
+  document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+  thumbnail.classList.add('active');
+}
+
+// Form Validation
+function validateCheckoutForm(event) {
+  event.preventDefault();
+  
+  const form = event.target;
+  const inputs = form.querySelectorAll('input[required], select[required]');
+  let isValid = true;
+
+  inputs.forEach(input => {
+    if (!input.value.trim()) {
+      isValid = false;
+      input.style.borderColor = 'var(--danger-color)';
+    } else {
+      input.style.borderColor = 'var(--border-color)';
+    }
+  });
+
+  if (isValid) {
+    showNotification('Order placed successfully!', 'success');
+    setTimeout(() => {
+      cart = [];
+      saveCart();
+      window.location.href = '../index.html';
+    }, 2000);
+  } else {
+    showNotification('Please fill in all required fields', 'error');
+  }
+}
+
+// Auth Forms
+function toggleAuthForm(formType) {
+  const loginForm = document.getElementById('loginForm');
+  const registerForm = document.getElementById('registerForm');
+  const loginTab = document.getElementById('loginTab');
+  const registerTab = document.getElementById('registerTab');
+
+  if (formType === 'login') {
+    loginForm.style.display = 'block';
+    registerForm.style.display = 'none';
+    loginTab.classList.add('active');
+    registerTab.classList.remove('active');
+  } else {
+    loginForm.style.display = 'none';
+    registerForm.style.display = 'block';
+    loginTab.classList.remove('active');
+    registerTab.classList.add('active');
+  }
+}
+
+function handleLogin(event) {
+  event.preventDefault();
+  showNotification('Login successful!', 'success');
+  setTimeout(() => {
+    window.location.href = '../index.html';
+  }, 1500);
+}
+
+function handleRegister(event) {
+  event.preventDefault();
+  const password = document.getElementById('registerPassword').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+
+  if (password !== confirmPassword) {
+    showNotification('Passwords do not match!', 'error');
+    return;
+  }
+
+  showNotification('Registration successful!', 'success');
+  setTimeout(() => {
+    window.location.href = '../index.html';
+  }, 1500);
+}
+
+// Contact Form
+function handleContactForm(event) {
+  event.preventDefault();
+  showNotification('Message sent successfully! We\'ll get back to you soon.', 'success');
+  event.target.reset();
+}
+
+// Animation styles
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideOutRight {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+`;
+document.head.appendChild(style);

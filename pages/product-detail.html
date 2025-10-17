@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Product details and specifications. Buy now with fast shipping and easy returns.">
+  <title>Product Details - ShopVerse</title>
+  
+  <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body class="light-mode" onload="loadProductDetail()">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html">
+        <i class="fas fa-shopping-bag"></i> ShopVerse
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="shop.html">Shop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+        
+        <div class="search-bar d-none d-lg-block">
+          <input type="text" placeholder="Search products...">
+          <i class="fas fa-search search-icon"></i>
+        </div>
+        
+        <div class="navbar-icons">
+          <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+            <i class="fas fa-moon" id="themeIcon"></i>
+          </button>
+          <a href="auth.html" class="icon-btn" title="Account">
+            <i class="fas fa-user"></i>
+          </a>
+          <a href="cart.html" class="icon-btn" title="Shopping Cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge" id="cartBadge">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Product Detail Section -->
+  <div class="container py-5">
+    <div class="row">
+      <!-- Product Gallery -->
+      <div class="col-lg-6 mb-4">
+        <div class="product-gallery">
+          <img id="mainImage" src="" alt="" class="main-image">
+          <div id="thumbnailImages" class="thumbnail-images">
+            <!-- Thumbnails will be loaded here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Information -->
+      <div class="col-lg-6">
+        <div class="product-details-content">
+          <div class="product-category" id="productCategory">Electronics</div>
+          <h1 id="productName" class="mb-3">Product Name</h1>
+          
+          <div class="product-rating mb-3">
+            <div class="stars" id="productRating"></div>
+            <span class="review-count ms-2" id="reviewCount">(0 reviews)</span>
+          </div>
+
+          <div class="product-price mb-4">
+            <span class="current-price" id="productPrice">$0.00</span>
+            <span class="original-price" id="productOriginalPrice">$0.00</span>
+          </div>
+
+          <p id="productDescription" class="mb-4">Product description will be loaded here.</p>
+
+          <h4>Key Features:</h4>
+          <ul class="feature-list" id="productFeatures">
+            <!-- Features will be loaded here -->
+          </ul>
+
+          <div class="mb-4">
+            <strong id="stockStatus">
+              <i class="fas fa-check-circle"></i> In Stock
+            </strong>
+          </div>
+
+          <button id="addToCartBtn" class="btn-secondary btn-lg w-100 mb-3">
+            <i class="fas fa-shopping-cart"></i> Add to Cart
+          </button>
+
+          <div class="d-flex gap-2">
+            <button class="btn-outline flex-fill" style="padding: 0.75rem;">
+              <i class="far fa-heart"></i> Add to Wishlist
+            </button>
+            <button class="btn-outline flex-fill" style="padding: 0.75rem;">
+              <i class="fas fa-share-alt"></i> Share
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reviews Section -->
+    <div class="reviews-section mt-5">
+      <h2 class="mb-4">Customer Reviews</h2>
+      
+      <div class="review-card">
+        <div class="review-header">
+          <div>
+            <div class="reviewer-name">John Doe</div>
+            <div class="stars" style="font-size: 0.875rem;">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+          <div class="review-date">2 days ago</div>
+        </div>
+        <p>Excellent product! Exceeded my expectations. The quality is outstanding and delivery was fast. Highly recommended!</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div>
+            <div class="reviewer-name">Jane Smith</div>
+            <div class="stars" style="font-size: 0.875rem;">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
+          </div>
+          <div class="review-date">1 week ago</div>
+        </div>
+        <p>Great value for money. The product works perfectly and looks even better in person. Minor packaging issues but the product itself is perfect.</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div>
+            <div class="reviewer-name">Mike Johnson</div>
+            <div class="stars" style="font-size: 0.875rem;">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+          <div class="review-date">2 weeks ago</div>
+        </div>
+        <p>Very satisfied with this purchase. Quality is top-notch and customer service was helpful when I had questions.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4><i class="fas fa-shopping-bag"></i> ShopVerse</h4>
+          <p>Your trusted eCommerce partner for quality products at affordable prices. Shop with confidence!</p>
+          <div class="social-links">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Customer Service</h4>
+          <ul class="footer-links">
+            <li><a href="#">Shipping Policy</a></li>
+            <li><a href="#">Returns & Exchanges</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Track Order</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Contact Info</h4>
+          <ul class="footer-links">
+            <li><i class="fas fa-map-marker-alt"></i> 123 Shopping Street, NY 10001</li>
+            <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+            <li><i class="fas fa-envelope"></i> info@shopverse.com</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 ShopVerse. All rights reserved. Designed with <i class="fas fa-heart" style="color: var(--accent-color);"></i> for Envato Market</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
