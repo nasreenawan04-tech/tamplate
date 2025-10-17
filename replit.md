@@ -55,15 +55,17 @@ Preferred communication style: Simple, everyday language.
 
 ### Page Architecture
 
-**Multi-Page Structure**
+**Multi-Page Structure (All in Root Directory)**
 - `index.html` - Home page with hero, featured products, categories
-- `pages/shop.html` - Product catalog with filtering and sorting
-- `pages/product-detail.html` - Individual product details with image gallery
-- `pages/cart.html` - Shopping cart with quantity management
-- `pages/checkout.html` - Checkout form with billing/shipping
-- `pages/auth.html` - Login and registration forms
-- `pages/contact.html` - Contact form with information
-- `pages/about.html` - About page with company information
+- `shop.html` - Product catalog with filtering and sorting
+- `product-details.html` - Individual product details with image gallery
+- `cart.html` - Shopping cart with quantity management
+- `checkout.html` - Checkout form with billing/shipping
+- `login.html` - Login form
+- `register.html` - Registration form
+- `contact.html` - Contact form with information
+- `about.html` - About page with company information
+- `wishlist.html` - Wishlist page
 
 **Routing & Navigation**
 - Traditional multi-page navigation (no SPA routing)
@@ -105,9 +107,15 @@ Preferred communication style: Simple, everyday language.
 ## External Dependencies
 
 ### CSS Frameworks & Libraries
-- **Bootstrap 5.3.0** (CDN) - Responsive grid system, components, and utilities
+- **Bootstrap 5.3.0** (Local + CDN fallback) - Responsive grid system, components, and utilities
 - **Font Awesome 6.4.0** (CDN) - Icon library for UI elements
 - **Google Fonts** (CDN) - Inter font family (weights: 300-800)
+- **Animate.css** (Local) - Animation library
+- **Custom CSS Files**:
+  - `assets/css/style.css` - Main custom styles
+  - `assets/css/responsive.css` - Responsive breakpoints
+  - `assets/css/bootstrap.min.css` - Bootstrap framework
+  - `assets/css/animate.css` - Animation library
 
 ### Image Resources
 - **Unsplash** - Product images via direct URLs with query parameters for sizing
@@ -128,11 +136,89 @@ Preferred communication style: Simple, everyday language.
 - No build tools or bundlers required
 - Static file hosting compatible (Netlify, Vercel, GitHub Pages)
 - No server-side dependencies
+- Python HTTP server for local development (`python -m http.server 5000`)
 - Direct file structure suitable for Envato/ThemeForest submission
+
+### Folder Structure
+```
+ShopVerse/
+├── index.html
+├── about.html
+├── shop.html
+├── product-details.html
+├── cart.html
+├── checkout.html
+├── login.html
+├── register.html
+├── contact.html
+├── wishlist.html
+├── assets/
+│   ├── css/
+│   │   ├── bootstrap.min.css
+│   │   ├── style.css
+│   │   ├── responsive.css
+│   │   └── animate.css
+│   ├── js/
+│   │   ├── bootstrap.bundle.min.js
+│   │   ├── jquery.min.js
+│   │   ├── main.js
+│   │   └── wow.min.js
+│   ├── images/
+│   │   ├── banners/
+│   │   ├── products/
+│   │   ├── icons/
+│   │   └── placeholders/
+│   ├── fonts/
+│   │   ├── roboto/
+│   │   └── open-sans/
+│   ├── vendors/
+│   │   ├── owlcarousel/
+│   │   ├── magnific-popup/
+│   │   ├── slick/
+│   │   └── aos/
+│   └── data/
+│       └── products.json
+├── documentation/
+├── LICENSE.txt
+├── changelog.txt
+└── README.md
+```
 
 ## Recent Changes
 
-### Latest Update: Hero Search Functionality (October 17, 2025) ✅
+### Latest Update: Folder Structure Reorganization (October 17, 2025) ✅
+**Complete restructuring of project folder organization for Envato Market compliance**
+
+#### Restructuring Completed:
+- ✅ **HTML Files Moved to Root**: All page files now in root directory (no pages/ folder)
+- ✅ **Files Renamed**: auth.html → login.html & register.html, product-detail.html → product-details.html
+- ✅ **Assets Reorganization**: Created proper subdirectory structure
+  - `assets/images/{banners,products,icons,placeholders}`
+  - `assets/fonts/{roboto,open-sans}`
+  - `assets/vendors/{owlcarousel,magnific-popup,slick,aos}`
+- ✅ **CSS Structure Updated**: Added bootstrap.min.css, responsive.css, animate.css; renamed styles.css → style.css
+- ✅ **JS Libraries Added**: bootstrap.bundle.min.js, jquery.min.js, wow.min.js
+- ✅ **Documentation Added**: LICENSE.txt and changelog.txt created
+- ✅ **Path References Updated**: All HTML files updated to use correct asset paths
+- ✅ **Python Installation**: Python 3.11 installed for local development server
+- ✅ **Verification Complete**: All pages tested and working correctly
+
+#### Files Modified:
+- All HTML pages (index, about, shop, product-details, cart, checkout, login, register, contact, wishlist)
+- `assets/data/products.json`: Updated image paths
+- `assets/css/`: Reorganized CSS files
+- `assets/js/`: Added required JS libraries
+
+#### Testing Status:
+- ✅ All pages load correctly with proper styling
+- ✅ Navigation works across all pages
+- ✅ No 404 errors or missing resources
+- ✅ Site fully functional with new structure
+- ✅ Server running on port 5000
+
+---
+
+### Previous Update: Hero Search Functionality (October 17, 2025) ✅
 **Integrated product search directly in the hero section of the home page**
 
 #### Hero Search Features:
