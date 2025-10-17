@@ -1,0 +1,53 @@
+You are a professional web developer creating documentation for an Envato HTML eCommerce template.
+
+I want you to create a clean, professional, and responsive documentation page for my HTML template called **"ShopVerse"**.
+
+🔹 Purpose:
+This documentation will guide buyers on how to edit, customize, and use the template after purchase.
+
+🔹 Output:
+Generate a complete file named **documentation/index.html** with inline CSS styling (no external files).
+
+🔹 Structure & Content:
+Include the following sections clearly formatted with headings, lists, and highlighted code examples.
+
+1. **Welcome / Introduction**
+   - Short intro about "ShopVerse"
+   - Mention that it’s a multipurpose responsive eCommerce HTML template.
+
+2. **Folder Structure**
+   - Show the full folder layout (index.html, assets/css, js, images, etc.)
+
+3. **HTML Structure Explanation**
+   - Explain how header, footer, and main sections are organized.
+   - Include sample HTML snippet using `<pre><code>...</code></pre>`.
+
+4. **CSS & JS Files**
+   - List all main CSS and JS files (bootstrap.min.css, style.css, main.js)
+   - Explain their purposes briefly.
+
+5. **Customization Guide**
+   - How to change logo, colors, fonts, and images.
+   - Add code snippets where needed.
+
+6. **Contact Form Setup**
+   - Explain the basic setup and how to link it to a working backend (optional).
+
+7. **SEO & Performance Tips**
+   - Mention use of meta tags, alt text, and image optimization.
+
+8. **Credits**
+   - Mention sources for images (Unsplash, Pexels, etc.) and libraries used (Bootstrap, FontAwesome).
+
+9. **Support**
+   - Add a short note like:  
+     “For any support, please contact us via your Envato account message system.”
+
+🔹 Design Requirements:
+- Use light background, readable font, and smooth scroll.
+- Add sidebar navigation (sticky on desktop).
+- Include a top title section with template name and version (e.g., ShopVerse v1.0).
+- Add a footer with copyright notice.
+
+🔹 Final Output:
+Generate clean, validated HTML (W3C compliant). The page should look neat and easy to read, ready to include in the `documentation/` folder before submitting to Envato.

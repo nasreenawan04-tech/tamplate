@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopVerse Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3 {
+            color: #0056b3;
+        }
+        header {
+            background: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        nav {
+            position: sticky;
+            top: 0;
+            background: #fff;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 10px 0;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #0056b3;
+        }
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #fff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+        pre {
+            background: #f4f4f4;
+            border-left: 5px solid #0056b3;
+            padding: 10px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>ShopVerse Documentation</h1>
+    <p>Version 1.0</p>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#welcome">Welcome / Introduction</a></li>
+        <li><a href="#folder-structure">Folder Structure</a></li>
+        <li><a href="#html-structure">HTML Structure Explanation</a></li>
+        <li><a href="#css-js-files">CSS & JS Files</a></li>
+        <li><a href="#customization-guide">Customization Guide</a></li>
+        <li><a href="#contact-form">Contact Form Setup</a></li>
+        <li><a href="#seo-performance">SEO & Performance Tips</a></li>
+        <li><a href="#credits">Credits</a></li>
+        <li><a href="#support">Support</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section id="welcome">
+        <h2>Welcome / Introduction</h2>
+        <p>Welcome to the documentation for <strong>ShopVerse</strong>. This is a multipurpose responsive eCommerce HTML template designed to meet your business needs.</p>
+    </section>
+
+    <section id="folder-structure">
+        <h2>Folder Structure</h2>
+        <pre><code>
+Root
+├── index.html
+├── assets
+│   ├── css
+│   ├── js
+│   └── images
+        </code></pre>
+    </section>
+
+    <section id="html-structure">
+        <h2>HTML Structure Explanation</h2>
+        <p>The structure of the HTML is organized into three main sections: header, footer, and main content.</p>
+        <pre><code>&lt;header&gt;
+    &lt;h1&gt;Welcome to ShopVerse&lt;/h1&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+    &lt;!-- Main content goes here --&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+    &lt;p&gt;&copy; 2023 ShopVerse. All rights reserved.&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+    </section>
+
+    <section id="css-js-files">
+        <h2>CSS & JS Files</h2>
+        <ul>
+            <li><strong>bootstrap.min.css</strong>: Bootstrap framework for responsive design.</li>
+            <li><strong>style.css</strong>: Custom styles specific to the ShopVerse template.</li>
+            <li><strong>main.js</strong>: JavaScript file for interactivity and functionality.</li>
+        </ul>
+    </section>
+
+    <section id="customization-guide">
+        <h2>Customization Guide</h2>
+        <p>To customize your ShopVerse template, follow these steps:</p>
+        <ul>
+            <li>Change the logo in <code>assets/images/logo.png</code></li>
+            <li>Edit colors in <code>style.css</code></li>
+            <li>Modify fonts in <code>style.css</code></li>
+            <li>Replace images in the <code>assets/images/</code> folder.</li>
+        </ul>
+        <p>Example code to change a background color:</p>
+        <pre><code>body {
+    background-color: #f0f0f0;
+}</code></pre>
+    </section>
+
+    <section id="contact-form">
+        <h2>Contact Form Setup</h2>
+        <p>To set up the contact form, use the following HTML code and link it to a backend service:</p>
+        <pre><code>&lt;form action="your-backend-url" method="post"&gt;
+    &lt;input type="text" name="name" placeholder="Your Name"&gt;
+    &lt;input type="email" name="email" placeholder="Your Email"&gt;
+    &lt;textarea name="message" placeholder="Your Message"&gt;&lt;/textarea&gt;
+    &lt;button type="submit"&gt;Send&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+    </section>
+
+    <section id="seo-performance">
+        <h2>SEO & Performance Tips</h2>
+        <p>Use <strong>meta tags</strong>, include <strong>alt text</strong> for images, and optimize them for better loading speeds.</p>
+    </section>
+
+    <section id="credits">
+        <h2>Credits</h2>
+        <p>Images sourced from Unsplash and Pexels. Libraries used: Bootstrap, FontAwesome.</p>
+    </section>
+
+    <section id="support">
+        <h2>Support</h2>
+        <p>For any support, please contact us via your Envato account message system.</p>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2023 ShopVerse. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
